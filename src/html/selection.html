@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Подобрать услугу - Роблакс</title>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+
+  <body class="selection-page">
+    @@include('blocks/header.html') @@include('blocks/mobile-menu.html')
+
+    <main role="main" class="selection">
+      <div class="selection__bg">
+        <div class="selection__bg-image"></div>
+      </div>
+
+      <div class="container">
+        <div class="selection__container">
+          <h1 class="selection__main-title">Подобрать услугу</h1>
+
+          @@include('selection/params.html')
+
+          <button
+            class="selection__result-btn disabled"
+            data-modal-open="selectionResultModal"
+            disabled
+          >
+            <span>Результат</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    @@include('blocks/footer.html') @@include('modal.html')
+    @@include('selection/result-modal.html')
+
+    <script src="./js/index.bundle.js"></script>
+  </body>
+</html>

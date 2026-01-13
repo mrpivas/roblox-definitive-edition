@@ -1,0 +1,315 @@
+.game-about {
+  padding: 80px 0 120px;
+  overflow: hidden;
+  position: relative;
+
+  // Фоновое изображение
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  &__bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/svgicons/bg/game_about.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  // Главное изображение
+  &__hero {
+    position: relative;
+    width: 1200px;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+
+  &__hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 38%,
+      rgba(0, 0, 0, 1) 100%
+    );
+    pointer-events: none;
+  }
+
+  // Описание
+  &__description {
+    max-width: 938px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.22;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 40px;
+  }
+
+  // Кнопка
+  &__button-wrapper {
+    filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+    transition: filter 0.3s ease;
+    margin-bottom: 80px;
+
+    &:hover {
+      filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+    }
+
+    &:active {
+      filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.35));
+    }
+  }
+
+  &__button {
+    width: 180px;
+    height: 50px;
+    padding: 9px 30px;
+  }
+
+  // Бесконечный слайдер
+  &__slider {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 40px 0;
+    overflow: hidden;
+    cursor: grab;
+    z-index: 10;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &:hover .game-about__slider-track {
+      animation-play-state: paused;
+    }
+  }
+
+  // Навигация
+  &__navigation {
+    display: none; // Скрыто по умолчанию на desktop
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__nav {
+    width: 100px;
+    height: 15px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      max-width: 100px;
+      max-height: 15px;
+      display: block;
+      opacity: 1;
+    }
+
+    &--prev {
+      transform: scaleX(-1);
+
+      &:hover {
+        transform: scaleX(-1) scale(1.05);
+      }
+
+      &:active {
+        transform: scaleX(-1) scale(0.95);
+      }
+    }
+
+    &--next {
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  &__slider-track {
+    display: flex;
+    gap: 20px;
+    animation: scroll 30s linear infinite;
+    width: fit-content;
+  }
+
+  &__slide {
+    flex-shrink: 0;
+    width: 600px;
+    height: 320px;
+    border-radius: 20px;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+    }
+  }
+
+  // Анимация бесконечной прокрутки
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-620px * 3)); // (600px + 20px gap) * 3 слайда
+    }
+  }
+
+  // Tablet адаптация
+  @include tablet {
+    padding: 60px 0 100px;
+
+    &__hero {
+      width: 100%;
+      max-width: 700px;
+      height: 400px;
+    }
+
+    &__description {
+      font-size: 16px;
+      padding: 0 20px;
+    }
+
+    &__button {
+      margin-bottom: 60px;
+    }
+
+    &__slide {
+      width: 500px;
+      height: 267px;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(
+          calc(-520px * 3)
+        ); // (500px + 20px gap) * 3 слайда
+      }
+    }
+  }
+
+  // Mobile адаптация
+  @include mobile {
+    padding: 40px 0 80px;
+
+    &__hero {
+      width: 100%;
+      max-width: 335px;
+      height: 200px;
+      margin: 0 auto 20px;
+    }
+
+    &__navigation {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      width: 100%;
+      margin-top: 30px;
+      position: relative;
+      z-index: 10;
+    }
+
+    &__description {
+      font-size: 14px;
+      padding: 0 20px;
+      margin-bottom: 40px;
+      max-width: 336px;
+    }
+
+    &__button-wrapper {
+      margin-bottom: 40px;
+    }
+
+    &__button {
+      width: 180px;
+      height: 50px;
+    }
+
+    &__slider {
+      padding: 30px 0;
+    }
+
+    &__slide {
+      width: 335px;
+      height: 200px;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(
+          calc(-355px * 3)
+        ); // (335px + 20px gap) * 3 слайда
+      }
+    }
+  }
+}

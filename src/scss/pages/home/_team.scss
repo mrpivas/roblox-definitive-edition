@@ -1,0 +1,764 @@
+.team {
+  position: relative;
+  width: 100%;
+  overflow: hidden; // Предотвращаем горизонтальное переполнение
+  padding: 80px 0;
+
+  // Черный фон с плавным переходом только сверху
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, #000000 80px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  // Сплошной черный фон под градиентом
+  &::after {
+    content: "";
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: calc(100% - 80px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  // === HEADER ===
+
+  &__header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.22;
+    text-transform: uppercase;
+    color: var(--white-100);
+    margin: 0;
+  }
+
+  // === НАВИГАЦИЯ ===
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    &--mobile {
+      display: none;
+    }
+  }
+
+  &__nav-btn {
+    width: 100px;
+    height: 15px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--prev {
+      transform: scaleX(-1);
+
+      &:hover:not(.swiper-button-disabled) {
+        transform: scaleX(-1) scale(1.05);
+      }
+
+      &:active:not(.swiper-button-disabled) {
+        transform: scaleX(-1) scale(0.95);
+      }
+    }
+
+    &--next {
+      &:hover:not(.swiper-button-disabled) {
+        transform: scale(1.05);
+      }
+
+      &:active:not(.swiper-button-disabled) {
+        transform: scale(0.95);
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transition: none;
+    }
+
+    &.swiper-button-disabled {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  // === SWIPER ===
+
+  .team-swiper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 40px;
+    padding: 20px 0;
+  }
+
+  .swiper-wrapper {
+    display: flex;
+  }
+
+  .swiper-wrapper {
+    display: flex;
+  }
+
+  .swiper-slide {
+    width: 290px;
+    height: 420px;
+    flex-shrink: 0;
+  }
+
+  // === ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ ===
+  // Свечение, которое распространяется на блок "про нас и нашу работу"
+  &__blur {
+    position: absolute;
+    width: 567px;
+    height: 567px;
+    background: #25136e;
+    filter: blur(200px);
+    -webkit-filter: blur(200px);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+    top: -114px;
+    left: -324px;
+
+    // Расширяем свечение, чтобы оно распространялось на блок about выше
+    // Делаем его больше и выше, чтобы захватывать нижнюю часть блока about
+    @media (min-width: 768px) {
+      width: 800px;
+      height: 800px;
+      top: -350px; // Поднимаем выше, чтобы распространяться на блок about
+      left: -450px;
+      filter: blur(200px);
+      -webkit-filter: blur(200px);
+    }
+
+    @media (min-width: 1024px) {
+      width: 1000px;
+      height: 1000px;
+      top: -500px; // Еще выше для больших экранов
+      left: -550px;
+      filter: blur(200px);
+      -webkit-filter: blur(200px);
+    }
+  }
+
+  // === АДАПТИВНОСТЬ ===
+
+  @include tablet {
+    padding: 60px 0;
+
+    &__title {
+      font-size: 24px;
+    }
+
+    &__navigation {
+      gap: 30px;
+    }
+
+    &__nav-btn {
+      width: 80px;
+      height: 12px;
+    }
+
+    .swiper-slide {
+      width: 250px;
+      height: 368px;
+    }
+
+    &__blur {
+      width: 600px;
+      height: 600px;
+      filter: blur(220px);
+      -webkit-filter: blur(220px);
+      top: -250px; // Поднимаем выше для планшетов, чтобы распространяться на блок about
+      left: -250px;
+    }
+  }
+
+  @include mobile {
+    padding: 40px 0;
+
+    &__header {
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    &__title {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    &__navigation--desktop {
+      display: none;
+    }
+
+    &__navigation--mobile {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    &__nav-btn {
+      width: 100px;
+      height: 15px;
+    }
+
+    .team-swiper {
+      margin-bottom: 0;
+      margin-top: 0;
+      width: 100%;
+      overflow: hidden; // Исправляем переполнение на мобильных
+      margin-left: 0;
+      padding-left: 0;
+    }
+    
+    // Центрируем первый слайд на мобильных
+    .swiper-wrapper {
+      align-items: center;
+    }
+
+    .swiper-slide {
+      width: calc(100vw - 80px) !important;
+      max-width: 300px !important;
+      height: 420px;
+      flex-shrink: 0; // Предотвращаем сжатие слайдов
+    }
+
+    &__blur {
+      width: 500px;
+      height: 500px;
+      filter: blur(180px);
+      -webkit-filter: blur(180px);
+      top: -200px; // Поднимаем выше для мобильных
+      left: -150px;
+    }
+  }
+}
+
+// === КАРТОЧКА КОМАНДЫ ===
+
+.team-card {
+  width: 100%;
+  height: 380px;
+  perspective: 1000px;
+  cursor: grab;
+  margin: 20px 0;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  // Внутренний контейнер для flip-эффекта
+  &__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+  }
+
+  // Флип при активном состоянии
+  &.is-flipped &__inner {
+    transform: rotateY(180deg) translateZ(10px);
+  }
+
+  // Общие стили для лицевой и обратной стороны
+  &__front,
+  &__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    border-radius: 20px;
+  }
+
+  &__front {
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  &__back {
+    z-index: 1;
+  }
+
+  &.is-flipped &__front {
+    z-index: 1;
+  }
+
+  &.is-flipped &__back {
+    z-index: 2;
+  }
+
+  // === ЛИЦЕВАЯ СТОРОНА ===
+
+  &__front {
+    background: transparent;
+
+    // Радиальный градиент по верхней границе
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: radial-gradient(
+        circle at 50% 0%,
+        rgba(101, 64, 251, 1) 0%,
+        rgba(60, 38, 149, 0) 100%
+      );
+      z-index: 5;
+    }
+  }
+
+  // Жидкое стекло подложка
+  &__glass {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    z-index: 0;
+    overflow: hidden;
+    isolation: isolate;
+
+    // Прозрачный фон
+    background-color: rgba(255, 255, 255, 0.01);
+
+    // Тонкая граница с легким свечением
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 2px 2px 0px -2px rgba(255, 255, 255, 0.2),
+      inset 0 0 2px 0.5px rgba(255, 255, 255, 0.15);
+
+    // Внешняя граница
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      z-index: -2;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 4px 0.5px rgba(255, 255, 255, 0.08);
+      pointer-events: none;
+    }
+
+    // Liquid glass эффект - backdrop-filter + SVG фильтр
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      border-radius: 20px;
+
+      // Размываем и преломляем фон
+      backdrop-filter: blur(2px) saturate(150%);
+      -webkit-backdrop-filter: blur(2px) saturate(150%);
+
+      // Применяем SVG фильтр к размытому фону
+      filter: url(#liquid-glass-team);
+      -webkit-filter: url(#liquid-glass-team);
+
+      pointer-events: none;
+      overflow: hidden;
+    }
+  }
+
+  // Фото поверх жидкого стекла
+  &__image {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  // Черное поле внизу с информацией
+  &__info {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: #0d0d0d;
+    border-radius: 10px;
+    padding: 10px 10px;
+    z-index: 2;
+  }
+
+  &__text-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__front &__name {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 1.22;
+    text-align: left;
+    color: var(--white-100);
+    margin: 0;
+  }
+
+  &__front &__position {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.22;
+    text-align: left;
+    color: var(--white-70);
+    margin: 0;
+  }
+
+  &__front &__toggle {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid #151515;
+    border-radius: 50%;
+    background: linear-gradient(
+      180deg,
+      rgba(101, 64, 251, 0) 84%,
+      rgba(60, 38, 149, 1) 100%
+    );
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      background: #0d0d0d;
+      z-index: -1;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  // === ОБРАТНАЯ СТОРОНА ===
+
+  &__back {
+    background: #0d0d0d;
+    border: 1px solid transparent;
+    transform: rotateY(180deg);
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: auto;
+
+    // Радиальный градиент по верхней границе
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: radial-gradient(
+        circle at 50% 0%,
+        rgba(101, 64, 251, 1) 0%,
+        rgba(60, 38, 149, 0) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__title-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__back &__name {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 1.22;
+    text-align: left;
+    color: var(--white-100);
+    margin: 0;
+  }
+
+  &__back &__position {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.22;
+    text-align: left;
+    color: var(--white-70);
+    margin: 0;
+  }
+
+  &__back &__toggle {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 2px solid #6540fb;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease,
+      border-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 100;
+    pointer-events: auto;
+
+    &:hover {
+      transform: scale(1.1);
+      border-color: #7152fb;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      z-index: 1;
+      pointer-events: none;
+    }
+  }
+
+  &__description {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.22;
+    text-align: left;
+    color: var(--white-70);
+    margin: 0;
+  }
+
+  // === АДАПТИВНОСТЬ ===
+
+  @include tablet {
+    &__front &__name,
+    &__back &__name {
+      font-size: 16px;
+    }
+
+    &__front &__position,
+    &__back &__position {
+      font-size: 11px;
+    }
+
+    &__description {
+      font-size: 11px;
+    }
+
+    &__image {
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+    }
+
+    &__info {
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
+      height: 52px;
+      padding: 10px;
+    }
+
+    &__text-wrapper {
+      padding-left: 12px;
+    }
+
+    &__front &__toggle {
+      width: 38px;
+      height: 38px;
+
+      img {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    &__back &__toggle {
+      width: 38px;
+      height: 38px;
+      border-width: 2px;
+
+      img {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    &__back {
+      padding: 22px;
+    }
+  }
+
+  @include mobile {
+    &__front &__name,
+    &__back &__name {
+      font-size: 14px;
+    }
+
+    &__front &__position,
+    &__back &__position {
+      font-size: 10px;
+    }
+
+    &__description {
+      font-size: 10px;
+    }
+
+    &__glass {
+      border-radius: 16px;
+
+      &::before {
+        border-radius: 16px;
+      }
+
+      &::after {
+        border-radius: 16px;
+      }
+    }
+
+    &__image {
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+      border-radius: 8px;
+    }
+
+    &__info {
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      height: 44px;
+      padding: 8px;
+      border-radius: 8px;
+    }
+
+    &__text-wrapper {
+      padding-left: 8px;
+    }
+
+    &__front &__toggle {
+      width: 32px;
+      height: 32px;
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &__back &__toggle {
+      width: 32px;
+      height: 32px;
+      border-width: 2px;
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &__back {
+      padding: 18px;
+      border-radius: 16px;
+    }
+  }
+}

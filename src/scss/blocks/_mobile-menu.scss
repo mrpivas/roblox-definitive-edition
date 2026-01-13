@@ -1,0 +1,163 @@
+// Блокировка прокрутки при открытом меню
+body.menu-open {
+  overflow: hidden;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 94px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  width: 335px;
+  height: 85%;
+  border-radius: 40px;
+  z-index: 99;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+
+  // Фон меню (полупрозрачный)
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 40px;
+    z-index: -1;
+  }
+
+  .menu-open & {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) scale(1);
+  }
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+
+  &__nav {
+    position: absolute;
+    left: 30px;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 49px;
+    z-index: 1;
+  }
+
+  &__link {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.219;
+    text-align: left;
+    color: var(--white-100);
+    text-decoration: none;
+    opacity: 1 !important; // Полная непрозрачность текста
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &.active {
+      font-weight: 700;
+    }
+  }
+
+  &__button-wrapper {
+    position: absolute;
+    left: 30px;
+    top: 363px;
+    z-index: 1;
+    filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+    }
+
+    &:active {
+      filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.35));
+    }
+  }
+
+  &__button {
+    display: block !important; // Переопределяем mobile hide
+    opacity: 1 !important; // Полная непрозрачность кнопки
+  }
+
+  &__socials {
+    position: absolute;
+    left: 30px;
+    bottom: 35px;
+    display: flex;
+    gap: 30px;
+    z-index: 1;
+  }
+
+  &__social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 62px;
+    height: 62px;
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    padding: 0;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(101, 64, 251, 0.4);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(101, 64, 251, 0.6);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    img,
+    svg {
+      width: 32px;
+      height: auto;
+      display: block;
+    }
+  }
+}
+
+// Блюр на контент при открытом меню
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 98;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  .menu-open & {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}

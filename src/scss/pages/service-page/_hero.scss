@@ -1,0 +1,252 @@
+.service-page-hero {
+  padding: 165px 0 80px;
+  position: relative;
+  overflow: visible;
+
+  // Фоновое изображение
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  &__bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/svgicons/bg/service-page-hero.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  // Заголовок
+  &__title {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: 42px;
+    line-height: 1em;
+    text-align: center;
+    color: var(--white-100);
+    margin: 0 auto 30px;
+    max-width: 575px;
+    white-space: nowrap;
+    position: relative;
+    z-index: 10;
+  }
+
+  // Карточка из жидкого стекла
+  &__card {
+    position: relative;
+    width: 100%;
+    height: 440px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    z-index: 10;
+  }
+
+  // Жидкое стекло (подложка)
+  &__glass {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 13, 17, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    z-index: 1;
+
+    // Размываем фон для стеклянного эффекта
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1),
+      0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+  }
+
+  // Изображение внутри карточки
+  &__image {
+    position: absolute;
+    inset: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 2;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  // Описание
+  &__description {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.219;
+    text-align: center;
+    color: var(--white-70);
+    margin: 0 auto 40px;
+    max-width: 938px;
+    position: relative;
+    z-index: 10;
+  }
+
+  // Кнопка
+  &__button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 50px;
+    margin: 0 auto 100px;
+    position: relative;
+    z-index: 10;
+    filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+    }
+
+    &:active {
+      filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.35));
+    }
+  }
+
+  &__button {
+    width: 100%;
+    height: 100%;
+  }
+
+  // Статистика
+  &__stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    width: 189px;
+  }
+
+  &__stat-number {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1.219;
+    text-align: center;
+    color: var(--white-100);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  &__stat-text {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.219;
+    text-align: center;
+    color: var(--white-70);
+    margin: 0;
+  }
+
+  // Адаптация для планшетов
+  @include tablet {
+    padding: 150px 0 60px;
+
+    &__title {
+      font-size: 32px;
+      max-width: 450px;
+    }
+
+    &__description {
+      font-size: 16px;
+      max-width: 700px;
+    }
+
+    &__card {
+      height: 350px;
+    }
+
+    &__stats {
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    &__stat {
+      width: 150px;
+    }
+
+    &__stat-number {
+      font-size: 32px;
+    }
+
+    &__stat-text {
+      font-size: 14px;
+    }
+  }
+
+  // Адаптация для мобильных
+  @include mobile {
+    padding: 120px 0 40px;
+
+    &__title {
+      font-size: 24px;
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+
+    &__description {
+      font-size: 14px;
+      max-width: 100%;
+      margin-bottom: 30px;
+    }
+
+    &__button-wrapper {
+      margin-bottom: 30px;
+    }
+
+    &__card {
+      height: 250px;
+      margin-bottom: 40px;
+    }
+
+    &__image {
+      inset: 10px;
+    }
+
+    &__stats {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    &__stat {
+      width: 100%;
+    }
+
+    &__stat-number {
+      font-size: 28px;
+    }
+
+    &__stat-text {
+      font-size: 12px;
+    }
+  }
+}

@@ -1,0 +1,603 @@
+.hero {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 0 80px;
+  overflow: visible;
+
+  // Фоновое изображение и эллипсы
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  &__bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/svgicons/bg/home_hero.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  &__dawn {
+    position: absolute;
+    top: 318px;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 389px;
+    pointer-events: none;
+    z-index: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 784px;
+    margin: 0 auto;
+    text-align: center;
+    overflow: visible;
+  }
+
+  &__subtitle {
+    margin: 0 0 13px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.219;
+    text-align: center;
+    color: var(--white-100);
+  }
+
+  &__title {
+    margin: 0 0 20px;
+    font-family: var(--font-family);
+    font-weight: 800;
+    font-size: 42px;
+    line-height: 1em;
+    text-align: center;
+    color: var(--white-100);
+
+    &-accent {
+      color: var(--accent);
+    }
+  }
+
+  &__description {
+    margin: 0 0 30px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.219;
+    text-align: center;
+    color: var(--white-100);
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  &__button-wrapper {
+    filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+    }
+
+    &:active {
+      filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.35));
+    }
+  }
+
+  &__button {
+    flex-shrink: 0;
+  }
+
+  &__slider {
+    position: relative;
+    z-index: 2;
+    margin-top: 80px;
+    margin-left: calc(50% - 50vw + 120px); // Выходим за пределы hero__content
+    margin-right: calc(50% - 50vw + 120px);
+    width: calc(100vw - 240px); // Учитываем padding контейнера (120px * 2)
+    max-width: 1200px;
+    overflow: visible;
+
+    @include tablet {
+      margin-top: 60px;
+      margin-left: calc(50% - 50vw + 40px);
+      margin-right: calc(50% - 50vw + 40px);
+      width: calc(100vw - 80px); // 40px * 2
+    }
+
+    @include mobile {
+      margin-top: 60px;
+      margin-left: calc(50% - 50vw + 20px);
+      margin-right: calc(50% - 50vw + 20px);
+      width: calc(100vw - 40px); // 20px * 2
+    }
+  }
+
+  // Блок со статистикой под слайдером
+  &__stats {
+    position: relative;
+    margin-top: -150px; // ПОД слайдером
+    margin-left: calc(50% - 50vw + 120px); // Выходим за пределы hero__content
+    margin-right: calc(50% - 50vw + 120px);
+    width: calc(100vw - 240px); // Учитываем padding контейнера (120px * 2)
+    max-width: 1202px;
+    background: linear-gradient(
+      135deg,
+      rgba(17, 18, 23, 0.6) 0%,
+      rgba(17, 18, 23, 0.4) 100%
+    );
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    padding: 40px 30px;
+    overflow: hidden;
+    height: 446px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: inset 2px 2px 0px -1px rgba(255, 255, 255, 0.15),
+      inset 0 0 2px 0.5px rgba(255, 255, 255, 0.1),
+      0 20px 60px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+
+    // Размытые эллипсы для декора
+    &::before {
+      content: "";
+      position: absolute;
+      top: -322px;
+      left: -345px;
+      width: 574px;
+      height: 574px;
+      background: rgba(73, 38, 216, 0.4);
+      border-radius: 50%;
+      filter: blur(300px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -322px;
+      right: -345px;
+      width: 608px;
+      height: 574px;
+      background: rgba(73, 38, 216, 0.4);
+      border-radius: 50%;
+      filter: blur(300px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @include tablet {
+      margin-top: -70px;
+      margin-left: calc(50% - 50vw + 40px);
+      margin-right: calc(50% - 50vw + 40px);
+      width: calc(100vw - 80px); // 40px * 2
+      padding: 30px 20px;
+      border-radius: 30px;
+      height: auto;
+    }
+
+    @include mobile {
+      margin-top: -90px;
+      margin-left: calc(50% - 50vw + 20px);
+      margin-right: calc(50% - 50vw + 20px);
+      width: calc(100vw - 40px); // 20px * 2
+      padding: 25px 15px;
+      border-radius: 25px;
+      height: auto;
+    }
+  }
+
+  &__stats-title {
+    position: relative;
+    z-index: 2;
+    font-family: var(--font-family);
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.219;
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0 0 40px;
+
+    @include tablet {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    @include mobile {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+  }
+
+  &__stats-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 21px;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+
+  &__stat-card {
+    position: relative;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 2px 2px 0px -1px rgba(255, 255, 255, 0.2),
+      inset 0 0 2px 0.5px rgba(255, 255, 255, 0.1),
+      0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  &__stat-image {
+    width: 100%;
+    height: 156px;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @include mobile {
+      height: 120px;
+    }
+  }
+
+  &__stat-number {
+    font-family: var(--font-family);
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.219;
+    text-align: center;
+    color: #ffffff;
+    margin: 16px 0 12px;
+
+    @include mobile {
+      font-size: 24px;
+      margin: 12px 0 8px;
+    }
+  }
+
+  &__stat-text {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.219;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0 20px 16px;
+
+    @include mobile {
+      font-size: 14px;
+      padding: 0 15px 12px;
+    }
+  }
+
+  // Адаптивность
+  @include tablet {
+    padding: 100px 0 60px;
+
+    &__dawn {
+      top: 200px;
+      height: 300px;
+    }
+
+    &__content {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+
+    &__title {
+      font-size: 36px;
+    }
+
+    &__subtitle {
+      font-size: 20px;
+    }
+
+    &__description {
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    &__slider {
+      margin-top: 60px;
+    }
+  }
+
+  @include mobile {
+    min-height: auto;
+    padding: 140px 0 40px;
+
+    &__dawn {
+      top: 370px;
+      height: 389px;
+    }
+
+    &__content {
+      padding: 0 15px;
+    }
+
+    &__subtitle {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    &__title {
+      font-size: 28px;
+      line-height: 1.2em;
+    }
+
+    &__description {
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    &__buttons {
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+    }
+
+    &__button {
+      width: 100%;
+      max-width: 280px;
+    }
+
+    &__slider {
+      margin-top: 60px;
+    }
+  }
+}
+
+// Модификаторы кнопок
+.button {
+  &--secondary {
+    // Вторичная кнопка - серый фон
+    background: var(--button-grey);
+    border: none;
+
+    // Обрезаем углы с помощью clip-path
+    clip-path: polygon(
+      12px 0,
+      /* верхний левый угол со скосом */ 100% 0,
+      /* верхний правый */ 100% calc(100% - 12px),
+      /* нижний правый со скосом */ calc(100% - 12px) 100%,
+      /* нижний правый угол */ 0 100%,
+      /* нижний левый */ 0 12px /* верхний левый угол */
+    );
+
+    box-shadow: none;
+
+    &:hover {
+      background: #344a6d;
+      box-shadow: 0 0 20px rgba(38, 56, 89, 0.3);
+    }
+
+    &:active {
+      box-shadow: none;
+    }
+  }
+
+  &--grey {
+    // Серая кнопка для "Загрузить ещё"
+    background: var(--button-grey);
+    border: none;
+    box-shadow: none;
+
+    &:hover {
+      background: #344a6d;
+      box-shadow: 0 0 20px rgba(38, 56, 89, 0.3);
+    }
+
+    &:active {
+      box-shadow: none;
+    }
+  }
+}
+
+// 3D Slider - Swiper стили
+.hero-swiper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 15px 60px !important;
+  overflow: visible;
+  text-align: center;
+
+  .swiper-wrapper {
+    padding-bottom: 20px;
+  }
+
+  .swiper-slide {
+    width: 320px;
+    height: auto;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+
+    &-active {
+      .hero-card {
+        box-shadow: inset 2px 2px 0px -2px rgba(255, 255, 255, 0.3),
+          inset 0 0 2px 0.5px rgba(255, 255, 255, 0.25),
+          0 15px 45px rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+
+  @include tablet {
+    padding: 0 15px 50px !important;
+
+    .swiper-slide {
+      width: 280px;
+      padding: 0 10px;
+    }
+  }
+
+  @include mobile {
+    padding: 0 15px 40px !important;
+
+    .swiper-slide {
+      width: 240px;
+      padding: 0 8px;
+    }
+  }
+}
+
+// Карточка с эффектом жидкого стекла
+.hero-card {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: 396px;
+  border-radius: 20px;
+  overflow: visible;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 0;
+  display: block;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+
+  // Основной фон стекла - максимально прозрачный
+  background-color: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  // Тонкая граница с легким свечением
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 2px 2px 0px -2px rgba(255, 255, 255, 0.2),
+    inset 0 0 2px 0.5px rgba(255, 255, 255, 0.15),
+    0 10px 30px rgba(0, 0, 0, 0.25);
+
+  // Маска для границы
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: -2;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 4px 0.5px rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+
+    -webkit-mask: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.6) 20%,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.6) 80%,
+      rgba(0, 0, 0, 1) 100%
+    );
+    mask: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.6) 20%,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.6) 80%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  }
+
+  // Liquid glass эффект (искажение через SVG фильтр)
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: 20px;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    filter: url(#liquid-glass-card);
+    -webkit-filter: url(#liquid-glass-card);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  // Контент внутри карточки
+  img {
+    position: relative;
+    z-index: 1;
+    width: calc(100% - 28px);
+    height: calc(100% - 28px);
+    display: block;
+    margin: 14px auto;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  // Эффект при наведении
+  transition: all 0.3s ease;
+
+  @include tablet {
+    max-width: 280px;
+    height: 346px;
+  }
+
+  @include mobile {
+    max-width: 240px;
+    height: 296px;
+  }
+}

@@ -1,0 +1,71 @@
+// Кастомные стили для Fancybox видео модалки
+
+// Оверлей модалки
+.fancybox__backdrop {
+  background: rgba(0, 0, 0, 0.95) !important;
+}
+
+// Контейнер модалки
+.fancybox__container {
+  --fancybox-bg: transparent;
+}
+
+// Контент модалки
+.fancybox__content {
+  background: transparent !important;
+  padding: 0 !important;
+  
+  > .fancybox-video {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+// Кнопка закрытия
+.fancybox__toolbar {
+  .fancybox__button--close {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2) !important;
+      transform: rotate(90deg);
+    }
+
+    svg {
+      color: #fff;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+    }
+  }
+}
+
+// Видео в модалке
+.fancybox-video {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+// Mobile адаптация
+@include mobile {
+  .fancybox-video {
+    max-width: 95vw;
+    max-height: 85vh;
+    border-radius: 10px;
+  }
+
+  .fancybox__toolbar {
+    .fancybox__button--close {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+

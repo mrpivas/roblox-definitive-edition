@@ -1,0 +1,68 @@
+{
+  "projects": [
+    {
+      "id": 10,
+      "name": "Название",
+      "category": "classic",
+      "image": "./img/projects/project.png",
+      "link": "#"
+    },
+    {
+      "id": 11,
+      "name": "Название",
+      "category": "brand",
+      "image": "./img/projects/project.png",
+      "link": "#"
+    },
+    {
+      "id": 12,
+      "name": "Название",
+      "category": "classic",
+      "image": "./img/projects/project.png",
+      "link": "#"
+    },
+    {
+      "id": 13,
+      "name": "Название",
+      "category": "brand",
+      "image": "./img/projects/project.png",
+      "link": "#"
+    },
+    {
+      "id": 14,
+      "name": "Название",
+      "category": "classic",
+      "image": "./img/projects/project.png",
+      "link": "#"
+    },
+    {
+      "id": 15,
+      "name": "Название",
+      "category": "brand",
+      "image": "./img/projects/project.png",
+      "link": "#"
+    },
+    {
+      "id": 16,
+      "name": "Название",
+      "category": "classic",
+      "image": "./img/projects/project.png",
+      "link": "#"
+    },
+    {
+      "id": 17,
+      "name": "Название",
+      "category": "brand",
+      "image": "./img/projects/project.png",
+      "link": "#"
+    },
+    {
+      "id": 18,
+      "name": "Название",
+      "category": "classic",
+      "image": "./img/projects/project.png",
+      "link": "#"
+    }
+  ]
+}
+

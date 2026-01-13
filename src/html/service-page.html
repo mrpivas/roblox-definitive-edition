@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Страница услуги - профессиональная разработка игр"
+    />
+    <title>Страница услуги | Hoorobes</title>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    @@include('./blocks/header.html')
+    @@include('./blocks/mobile-menu.html')
+
+    <!-- Main Content -->
+    <main class="service-page">
+      @@include('./service-page/hero.html')
+      @@include('./service-page/games.html')
+      @@include('./services/catalog.html')
+    </main>
+
+    <!-- Footer -->
+    @@include('./blocks/footer.html')
+
+    <!-- Модальное окно -->
+    @@include('./modal.html')
+
+    <!-- Scripts -->
+    <script src="./js/index.bundle.js"></script>
+  </body>
+</html>

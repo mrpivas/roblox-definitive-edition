@@ -1,0 +1,262 @@
+.selection-page {
+  background: var(--black-100);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.selection {
+  position: relative;
+  padding: 130px 0 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  &__bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/svgicons/bg/selection.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__container {
+    width: 100%;
+    max-width: 1321px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__main-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 42px;
+    line-height: 1em;
+    color: var(--white-100);
+    margin: 0 0 62px;
+  }
+
+  &__params {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 81px;
+  }
+
+  &__params-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__params-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.219;
+    color: var(--white-100);
+    margin: 0;
+  }
+
+  &__params-grid {
+    display: grid;
+    gap: 15px;
+
+    &--four {
+      grid-template-columns: repeat(4, 290px);
+    }
+
+    &--two {
+      grid-template-columns: repeat(2, 595px);
+    }
+  }
+
+  &__param-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 30px;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 44px;
+
+    &:hover {
+      border-color: var(--white-100);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &.active {
+      border-color: var(--accent);
+      background: rgba(101, 64, 251, 0.1);
+
+      .selection__param-icon-fill {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__param-text {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.219;
+    color: var(--white-100);
+    text-align: center;
+  }
+
+  &__param-icon {
+    flex-shrink: 0;
+  }
+
+  &__param-icon-fill {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &__result-btn {
+    margin-top: 100px;
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 30px;
+    min-width: 180px;
+    height: 50px;
+    position: relative;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    // Фон вместо border-image
+    background: var(--accent);
+    border: none;
+
+    // Обрезаем углы с помощью clip-path
+    clip-path: polygon(
+      12px 0,
+      /* верхний левый угол со скосом */ 100% 0,
+      /* верхний правый */ 100% calc(100% - 12px),
+      /* нижний правый со скосом */ calc(100% - 12px) 100%,
+      /* нижний правый угол */ 0 100%,
+      /* нижний левый */ 0 12px /* верхний левый угол */
+    );
+
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 1.219;
+    text-align: center;
+    color: var(--white-100);
+    text-decoration: none;
+
+    transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+
+    &:hover:not(:disabled):not(.disabled) {
+      transform: translateY(-2px);
+      filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+    }
+
+    &:active:not(:disabled):not(.disabled) {
+      transform: translateY(0);
+      filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.35));
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: #263859;
+      filter: none;
+      transform: none;
+
+      &:hover {
+        transform: none;
+        filter: none;
+      }
+    }
+  }
+
+    span {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+// Респонсив
+@include tablet {
+  .selection {
+    &__params-grid {
+      &--four {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      &--two {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
+
+@include mobile {
+  .selection {
+    padding: 86px 0 150px;
+
+    &__container {
+      padding: 0 15px;
+    }
+
+    &__main-title {
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+
+    &__params {
+      gap: 40px;
+    }
+
+    &__params-title {
+      font-size: 20px;
+    }
+
+    &__params-grid {
+      &--four,
+      &--two {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &__result-btn {
+      margin-top: 60px;
+    }
+  }
+}

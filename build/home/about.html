@@ -1,0 +1,94 @@
+<svg width="0" height="0" style="position: absolute;">
+	<defs>
+		<filter id="liquid-glass-about" x="-50%" y="-50%" width="200%" height="200%">
+			<feTurbulence type="fractalNoise" baseFrequency="0.015 0.015" numOctaves="3" seed="7" result="turbulence" />
+			<feGaussianBlur in="turbulence" stdDeviation="1" result="smoothNoise" />
+			<feDisplacementMap in="SourceGraphic" in2="smoothNoise" scale="8" xChannelSelector="R" yChannelSelector="G" result="distorted" />
+			<feGaussianBlur in="distorted" stdDeviation="0.2" />
+		</filter>
+	</defs>
+</svg>
+
+<section class="about" id="about">
+	<!-- Фоновое изображение -->
+	<div class="about__bg">
+		<div class="about__bg-image"></div>
+	</div>
+
+	<div class="container">
+		<div class="about__wrapper">
+			<div class="about__image-wrapper">
+				<div class="about__image-card">
+					<picture>
+						<source srcset="./img/home/about.webp" type="image/webp" />
+						<img src="./img/home/about.png" alt="О компании Hooroobes" class="about__image" loading="lazy" />
+					</picture>
+				</div>
+			</div>
+
+			<div class="about__content">
+				<div class="about__team">
+					<div class="about__avatars">
+						<picture>
+							<source srcset="./img/home/ava-1.webp" type="image/webp" />
+							<img src="./img/home/ava-1.png" alt="Член команды 1" class="about__avatar" loading="lazy" />
+						</picture>
+						<picture>
+							<source srcset="./img/home/ava-2.webp" type="image/webp" />
+							<img src="./img/home/ava-2.png" alt="Член команды 2" class="about__avatar" loading="lazy" />
+						</picture>
+						<picture>
+							<source srcset="./img/home/ava-3.webp" type="image/webp" />
+							<img src="./img/home/ava-3.png" alt="Член команды 3" class="about__avatar" loading="lazy" />
+						</picture>
+						<picture>
+							<source srcset="./img/home/ava-4.webp" type="image/webp" />
+							<img src="./img/home/ava-4.png" alt="Член команды 4" class="about__avatar" loading="lazy" />
+						</picture>
+						<div class="about__avatar about__avatar--more">
+							<picture>
+								<source srcset="./img/home/ava-5.webp" type="image/webp" />
+								<img src="./img/home/ava-5.png" alt="Член команды 5" loading="lazy" />
+							</picture>
+						</div>
+					</div>
+					<span class="about__team-count">+4</span>
+				</div>
+
+				<h2 class="about__title">Про нас и&#160;нашу работу</h2>
+
+				<p class="about__text">
+					Hooroobes&#160;&#8212; студия разработки игр нового поколения. Мы&#160;создаём авторские миры с&#160;уникальной визуальной ДНК и&#160;механиками, от&#160;которых
+					невозможно оторваться. От&#160;атмосферных инди-проектов до&#160;амбициозных тайтлов, готовых ворваться в&#160;глобальные топы.
+				</p>
+
+				<p class="about__text">
+					Каждый наш проект&#160;&#8212; это не&#160;просто игра, а&#160;целая вселенная с харизматичными персонажами и&#160;историей, в&#160;которую хочется возвращаться.
+				</p>
+
+				<div class="about__stats">
+					<div class="about__stat-item">
+						<span class="about__stat-number">6 лет</span>
+						<span class="about__stat-label">работы</span>
+					</div>
+
+					<div class="about__stat-item">
+						<span class="about__stat-number">+ 100 игр</span>
+						<span class="about__stat-label">мы&#160;сделали</span>
+					</div>
+
+					<div class="about__stat-item">
+						<span class="about__stat-number">15 людей</span>
+						<span class="about__stat-label">в&#160;команде</span>
+					</div>
+				</div>
+
+				<div class="about__button-wrapper">
+					<a href="services.html" class="about__button button" aria-label="Начать проект">
+						Начать проект
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

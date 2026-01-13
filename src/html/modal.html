@@ -1,0 +1,404 @@
+<!-- Модальное окно брифа -->
+<div class="modal" id="briefModal" aria-hidden="true">
+  <!-- Overlay (фон с размытием) -->
+  <div class="modal__overlay" data-modal-close></div>
+
+  <!-- Модальное окно -->
+  <div class="modal__container">
+    <!-- Декоративное свечение -->
+    <div class="modal__glow"></div>
+    <div class="modal__glow modal__glow--secondary"></div>
+
+    <!-- Кнопка закрытия -->
+    <button
+      class="modal__close"
+      data-modal-close
+      aria-label="Закрыть модальное окно"
+    >
+      <span class="modal__close-icon">
+        <img src="./img/svgicons/modal/cross.svg" alt="Закрыть" />
+      </span>
+    </button>
+
+    <!-- Слайдер -->
+    <div class="modal__slider">
+      <!-- Слайд 1: Приветствие -->
+      <div class="modal__slide modal__slide--active" data-slide="1">
+        <div class="modal__content">
+          <!-- Левая часть - текст и кнопка -->
+          <div class="modal__left">
+            <h2 class="modal__title">
+              Заполним небольшой бриф перед началом
+            </h2>
+            <button
+              class="modal__button modal__button--start"
+              aria-label="Начать заполнение брифа"
+            >
+              Начать
+            </button>
+          </div>
+
+          <!-- Правая часть - изображение -->
+          <div class="modal__right">
+            <img
+              src="./img/modal/main.png"
+              alt="Иллюстрация"
+              class="modal__image"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Слайд 2: Вопрос 1 -->
+      <div class="modal__slide" data-slide="2">
+        <div class="modal__content">
+          <!-- Изображение справа -->
+          <div class="modal__image-right">
+            <img src="./img/modal/main.png" alt="Иллюстрация" />
+          </div>
+
+          <!-- Заголовок с иконкой -->
+          <div class="modal__header">
+            <h2 class="modal__question-title">Какая услуга вас интересует?</h2>
+            <button class="modal__help" aria-label="Помощь" title="Помощь">
+              <img src="./img/svgicons/modal/help.svg" alt="?" />
+            </button>
+          </div>
+
+          <!-- Grid кнопок выбора -->
+          <div class="modal__options">
+            <button class="modal__option" data-option="game">
+              Разработка игры
+            </button>
+            <button class="modal__option" data-option="design">Дизайн</button>
+            <button class="modal__option" data-option="animation">
+              Анимация
+            </button>
+            <button class="modal__option" data-option="modeling">
+              3D моделирование
+            </button>
+            <button class="modal__option" data-option="consulting">
+              Консультация
+            </button>
+            <button class="modal__option" data-option="support">
+              Поддержка
+            </button>
+            <button class="modal__option" data-option="marketing">
+              Маркетинг
+            </button>
+            <button class="modal__option" data-option="sound">Звук</button>
+            <button class="modal__option" data-option="story">Сюжет</button>
+            <button class="modal__option" data-option="optimization">
+              Оптимизация
+            </button>
+            <button class="modal__option" data-option="testing">
+              Тестирование
+            </button>
+            <button class="modal__option" data-option="other">Другое</button>
+          </div>
+
+          <!-- Прогресс-бар и навигация -->
+          <div class="modal__footer">
+            <div class="modal__progress">
+              <div class="modal__progress-info">
+                <span class="modal__progress-text">Готово: 20%</span>
+                <span class="modal__progress-step">Первый вопрос</span>
+              </div>
+              <div class="modal__progress-bar">
+                <div class="modal__progress-fill" style="width: 20%"></div>
+              </div>
+            </div>
+
+            <div class="modal__navigation">
+              <button class="modal__nav-button modal__nav-button--back">
+                <img src="./img/svgicons/modal/back.svg" alt="Назад" />
+              </button>
+              <button
+                class="modal__nav-button modal__nav-button--next"
+                disabled
+              >
+                Далее
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Слайд 3: Вопрос 2 -->
+      <div class="modal__slide" data-slide="3">
+        <div class="modal__content">
+          <!-- Изображение справа -->
+          <div class="modal__image-right">
+            <img src="./img/modal/main.png" alt="Иллюстрация" />
+          </div>
+
+          <!-- Заголовок с иконкой -->
+          <div class="modal__header">
+            <h2 class="modal__question-title">Опишите ваш проект</h2>
+            <button class="modal__help" aria-label="Помощь" title="Помощь">
+              <img src="./img/svgicons/modal/help.svg" alt="?" />
+            </button>
+          </div>
+
+          <!-- Textarea для текста -->
+          <div class="modal__textarea-wrapper">
+            <textarea
+              class="modal__textarea"
+              placeholder="Напишите сообщение"
+              rows="10"
+            ></textarea>
+          </div>
+
+          <!-- Прогресс-бар и навигация -->
+          <div class="modal__footer">
+            <div class="modal__progress">
+              <div class="modal__progress-info">
+                <span class="modal__progress-text">Готово: 40%</span>
+                <span class="modal__progress-step">Второй вопрос</span>
+              </div>
+              <div class="modal__progress-bar">
+                <div class="modal__progress-fill" style="width: 50%"></div>
+              </div>
+            </div>
+
+            <div class="modal__navigation">
+              <button class="modal__nav-button modal__nav-button--back">
+                <img src="./img/svgicons/modal/back.svg" alt="Назад" />
+              </button>
+              <button
+                class="modal__nav-button modal__nav-button--next"
+                disabled
+              >
+                Далее
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Слайд 4: Вопрос 3 -->
+      <div class="modal__slide" data-slide="4">
+        <div class="modal__content">
+          <!-- Изображение справа -->
+          <div class="modal__image-right">
+            <img src="./img/modal/main.png" alt="Иллюстрация" />
+          </div>
+
+          <!-- Заголовок с иконкой -->
+          <div class="modal__header">
+            <h2 class="modal__question-title">Выберите стиль</h2>
+            <button class="modal__help" aria-label="Помощь" title="Помощь">
+              <img src="./img/svgicons/modal/help.svg" alt="?" />
+            </button>
+          </div>
+
+          <!-- Список radio опций -->
+          <div class="modal__radio-options">
+            <label class="modal__radio-option">
+              <input type="radio" name="style" class="modal__radio-input" />
+              <span class="modal__radio-button">
+                <span class="modal__radio-text">Реалистичный</span>
+                <span class="modal__radio-circle"></span>
+              </span>
+            </label>
+            <label class="modal__radio-option">
+              <input type="radio" name="style" class="modal__radio-input" />
+              <span class="modal__radio-button">
+                <span class="modal__radio-text">Мультяшный</span>
+                <span class="modal__radio-circle"></span>
+              </span>
+            </label>
+            <label class="modal__radio-option">
+              <input type="radio" name="style" class="modal__radio-input" />
+              <span class="modal__radio-button">
+                <span class="modal__radio-text">Пиксельный</span>
+                <span class="modal__radio-circle"></span>
+              </span>
+            </label>
+            <label class="modal__radio-option">
+              <input type="radio" name="style" class="modal__radio-input" />
+              <span class="modal__radio-button">
+                <span class="modal__radio-text">Минималистичный</span>
+                <span class="modal__radio-circle"></span>
+              </span>
+            </label>
+            <label class="modal__radio-option">
+              <input type="radio" name="style" class="modal__radio-input" />
+              <span class="modal__radio-button">
+                <span class="modal__radio-text">Другой</span>
+                <span class="modal__radio-circle"></span>
+              </span>
+            </label>
+          </div>
+
+          <!-- Прогресс-бар и навигация -->
+          <div class="modal__footer">
+            <div class="modal__progress">
+              <div class="modal__progress-info">
+                <span class="modal__progress-text">Готово: 60%</span>
+                <span class="modal__progress-step">Третий вопрос</span>
+              </div>
+              <div class="modal__progress-bar">
+                <div class="modal__progress-fill" style="width: 60%"></div>
+              </div>
+            </div>
+
+            <div class="modal__navigation">
+              <button class="modal__nav-button modal__nav-button--back">
+                <img src="./img/svgicons/modal/back.svg" alt="Назад" />
+              </button>
+              <button
+                class="modal__nav-button modal__nav-button--next"
+                disabled
+              >
+                Далее
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Слайд 5: Вопрос 4 - Контактная информация -->
+      <div class="modal__slide" data-slide="5">
+        <div class="modal__content">
+          <!-- Изображение справа -->
+          <div class="modal__image-right">
+            <img src="./img/modal/main.png" alt="Иллюстрация" />
+          </div>
+
+          <!-- Заголовок с иконкой -->
+          <div class="modal__header">
+            <h2 class="modal__question-title">Остался последний шаг</h2>
+            <button class="modal__help" aria-label="Помощь" title="Помощь">
+              <img src="./img/svgicons/modal/help.svg" alt="?" />
+            </button>
+          </div>
+
+          <!-- Форма контактов -->
+          <div class="modal__form">
+            <div class="modal__form-fields">
+              <input
+                type="text"
+                class="modal__input"
+                placeholder="Имя"
+                data-name-input
+              />
+              <input
+                type="email"
+                class="modal__input"
+                placeholder="Email"
+                data-email-input
+              />
+            </div>
+
+            <div class="modal__contact-methods">
+              <label class="modal__contact-method">
+                <input type="radio" name="contact" value="email" checked />
+                <span class="modal__contact-label">Email</span>
+              </label>
+              <label class="modal__contact-method">
+                <input type="radio" name="contact" value="telegram" />
+                <span class="modal__contact-label">Telegram</span>
+              </label>
+              <label class="modal__contact-method">
+                <input type="radio" name="contact" value="whatsapp" />
+                <span class="modal__contact-label">Whatsapp</span>
+              </label>
+            </div>
+
+            <textarea
+              class="modal__textarea modal__textarea--large"
+              placeholder="Напишите сообщение"
+              rows="6"
+              data-message-input
+            ></textarea>
+          </div>
+
+          <!-- Прогресс-бар и навигация -->
+          <div class="modal__footer">
+            <div class="modal__progress">
+              <div class="modal__progress-info">
+                <span class="modal__progress-text">Готово: 99%</span>
+                <span class="modal__progress-step">Завершение</span>
+              </div>
+              <div class="modal__progress-bar">
+                <div class="modal__progress-fill" style="width: 99%"></div>
+              </div>
+            </div>
+
+            <div class="modal__navigation">
+              <button class="modal__nav-button modal__nav-button--back">
+                <img src="./img/svgicons/modal/back.svg" alt="Назад" />
+              </button>
+              <button
+                class="modal__nav-button modal__nav-button--submit"
+                disabled
+              >
+                Отправить
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Слайд 6: Завершение -->
+      <div class="modal__slide" data-slide="6">
+        <div class="modal__content modal__content--success">
+          <div class="modal__left modal__left--success">
+            <h2 class="modal__title modal__title--success">
+              Ваша заявка отправлена
+            </h2>
+            <p class="modal__description">
+              Мы с вами свяжемся в течении 20 минут. Если у вас остались
+              вопросы, то напишите нам в удобной для вам мессенджер
+            </p>
+            <div class="modal__social">
+              <a
+                href="https://t.me/your_telegram"
+                class="modal__social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Telegram"
+              >
+                <img src="./img/svgicons/modal/tg.svg" alt="Telegram" />
+              </a>
+              <a
+                href="https://discord.gg/your_discord"
+                class="modal__social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Discord"
+              >
+                <img src="./img/svgicons/modal/discord.svg" alt="Discord" />
+              </a>
+            </div>
+          </div>
+          <div class="modal__right modal__right--success">
+            <img
+              src="./img/modal/main.png"
+              alt="Иллюстрация"
+              class="modal__image modal__image--success"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Тултип помощи (вне модалки) -->
+<div class="modal__tooltip-wrapper" id="helpTooltip">
+  <div class="modal__tooltip-overlay"></div>
+  <div class="modal__tooltip">
+    <button class="modal__tooltip-close" aria-label="Закрыть подсказку">
+      <img src="./img/svgicons/modal/cross.svg" alt="Закрыть" />
+    </button>
+    <p class="modal__tooltip-text">
+      Вы можете ознакомится<br />
+      с информацией об услугах здесь
+    </p>
+    <a href="./services.html" class="modal__tooltip-button">
+      Перейти
+    </a>
+  </div>
+</div>

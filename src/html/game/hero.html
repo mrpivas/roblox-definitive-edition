@@ -1,0 +1,47 @@
+<svg width="0" height="0" style="position: absolute;">
+  <defs>
+    <filter id="liquid-glass-play-button">
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.015"
+        numOctaves="2"
+        result="noise"
+      />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+    </filter>
+  </defs>
+</svg>
+
+<section class="game-hero">
+  <img
+    src="./img/game/hero.png"
+    alt="Превью видео игры"
+    class="game-hero__preview"
+  />
+
+  <div class="game-hero__overlay"></div>
+
+  <a
+    href="./img/example.mp4"
+    data-fancybox="game-video"
+    class="game-hero__play-button"
+    aria-label="Воспроизвести видео"
+  >
+    <svg
+      class="game-hero__play-icon"
+      width="40"
+      height="48"
+      viewBox="0 0 40 48"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M2 2L38 24L2 46V2Z"
+        fill="white"
+        stroke="white"
+        stroke-width="3"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </a>
+</section>

@@ -1,0 +1,1267 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  display: none; /* Скрываем модалку по умолчанию */
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.is-open {
+    display: flex; /* Показываем модалку при открытии */
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  // Overlay (затемненный фон с размытием)
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 1;
+  }
+
+  // Контейнер модалки
+  &__container {
+    position: relative;
+    width: 1200px;
+    height: 561px;
+    background: #000000;
+    border-radius: 20px;
+    z-index: 2;
+    overflow: hidden;
+    transition: width 0.3s ease, height 0.3s ease;
+
+    // Размер для первого слайда и слайда завершения
+    &:has(.modal__slide[data-slide="1"].modal__slide--active),
+    &:has(.modal__slide[data-slide="6"].modal__slide--active) {
+      width: 1070px;
+      height: 453px;
+    }
+  }
+
+  // Модалка результата подбора услуги
+  &#selectionResultModal {
+    .modal__container {
+      width: 1070px;
+      height: 453px;
+    }
+
+    .modal__close {
+      width: 50px;
+      height: 50px;
+      top: 20px;
+      right: 20px;
+    }
+
+    .modal__close-icon {
+      width: 32px;
+      height: 32px;
+
+      img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    .modal__content--result {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      padding: 0;
+      height: 100%;
+      position: relative;
+      z-index: 3;
+    }
+
+    .modal__left--result {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      padding: 117px 34px 0;
+      max-width: 540px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .modal__title--result {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      line-height: 1.219;
+      text-align: center;
+      color: var(--white-100);
+      margin: 0 0 12px;
+      width: 100%;
+      max-width: 472px;
+    }
+
+    .modal__description--result {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.219;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0 0 40px;
+      width: 100%;
+      max-width: 428px;
+    }
+
+    .modal__button--result {
+      width: 180px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 30px;
+      margin: 0 auto;
+    }
+
+    .modal__right--result {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 510px;
+      height: 413px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .modal__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  // Декоративное свечение (фиолетовое)
+  &__glow {
+    position: absolute;
+    width: 503px;
+    height: 503px;
+    background: var(--accent);
+    filter: blur(254px);
+    -webkit-filter: blur(254px);
+    top: -390px;
+    left: -246px;
+    z-index: 0;
+    pointer-events: none;
+
+    // Второе свечение (справа снизу)
+    &--secondary {
+      width: 325px;
+      height: 325px;
+      top: auto;
+      bottom: -106px;
+      left: auto;
+      right: -19px;
+    }
+  }
+
+  // Кнопка закрытия (со скошенными углами)
+  &__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+
+    // Фон вместо border-image
+    background: var(--accent);
+    border: none;
+
+    // Обрезаем углы с помощью clip-path
+    clip-path: polygon(
+      12px 0,
+      /* верхний левый угол со скосом */ 100% 0,
+      /* верхний правый */ 100% calc(100% - 12px),
+      /* нижний правый со скосом */ calc(100% - 12px) 100%,
+      /* нижний правый угол */ 0 100%,
+      /* нижний левый */ 0 12px /* верхний левый угол */
+    );
+
+    transition: transform 0.3s ease;
+
+    &:hover {
+      // Тень применяется к родителю через CSS
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+  }
+
+  // Применяем filter к родителю кнопки закрытия
+  &__close {
+    filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+    transition: filter 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+    }
+
+    &:active {
+      filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.35));
+    }
+  }
+
+  &__close-icon {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+
+    img {
+      width: 32px;
+      height: 32px;
+      display: block;
+    }
+  }
+
+  &__title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 1.219;
+    color: var(--white-100);
+    margin: 0;
+  }
+
+  &__button {
+    width: 180px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 30px;
+    position: relative;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    // Фон вместо border-image
+    background: var(--accent);
+    border: none;
+
+    // Обрезаем углы с помощью clip-path
+    clip-path: polygon(
+      12px 0,
+      /* верхний левый угол со скосом */ 100% 0,
+      /* верхний правый */ 100% calc(100% - 12px),
+      /* нижний правый со скосом */ calc(100% - 12px) 100%,
+      /* нижний правый угол */ 0 100%,
+      /* нижний левый */ 0 12px /* верхний левый угол */
+    );
+
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 1.219;
+    text-align: center;
+    color: var(--white-100);
+    text-decoration: none;
+
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+
+    &:hover {
+      transform: translateY(-2px);
+      filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+    }
+
+    &:active {
+      transform: translateY(0);
+      filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.35));
+    }
+  }
+
+  // Адаптация для планшетов
+  @include tablet {
+    &__container {
+      width: 90%;
+      max-width: 800px;
+      height: auto;
+      min-height: 400px;
+    }
+
+    &__content {
+      padding: 40px;
+      gap: 20px;
+    }
+
+    &__left {
+      gap: 30px;
+      max-width: 100%;
+    }
+
+    &__title {
+      font-size: 28px;
+    }
+
+    &__right {
+      width: 400px;
+      height: 320px;
+    }
+  }
+
+  // Адаптация для мобильных
+  // Слайдер
+  &__slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &__slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+
+    &--active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
+  }
+
+  // Первый слайд (приветствие)
+  &__slide[data-slide="1"] {
+    .modal__content {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding: 50px;
+      height: 100%;
+      z-index: 3;
+    }
+
+    .modal__left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      max-width: 472px;
+    }
+
+    .modal__right {
+      width: 510px;
+      height: 413px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .modal__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  // Шестой слайд (завершение)
+  &__slide[data-slide="6"] {
+    .modal__content {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding: 50px;
+      height: 100%;
+      z-index: 3;
+      justify-content: space-between;
+    }
+
+    .modal__left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+      max-width: 472px;
+    }
+
+    .modal__right {
+      width: 510px;
+      height: 413px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .modal__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal__title {
+      width: 100%;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      line-height: 1.219;
+      text-align: center;
+      color: var(--white-100);
+      margin: 0;
+      text-wrap: nowrap;
+    }
+  }
+
+  &__description {
+    width: 428px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.219;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+
+  &__social {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 28px;
+  }
+
+  &__social-link {
+    width: 62px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(101, 64, 251, 0.4);
+
+    img {
+      width: 32px;
+      height: auto;
+      display: block;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(101, 64, 251, 0.6);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // Крестик на первом слайде и слайде завершения
+  &__container:has(.modal__slide[data-slide="1"].modal__slide--active),
+  &__container:has(.modal__slide[data-slide="6"].modal__slide--active) {
+    .modal__close {
+      right: 50px;
+    }
+  }
+
+  // Второй слайд (вопросы) - только для десктопа
+  @media (min-width: 768px) {
+    &__image-right {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 370px;
+      height: 521px;
+      border-radius: 10px 0 10px 10px;
+      overflow: hidden;
+      z-index: 1;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__header {
+      position: relative;
+      padding: 40px 40px 20px;
+      z-index: 2;
+    }
+
+    &__question-title {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      line-height: 1.219;
+      color: var(--white-100);
+      margin: 0;
+    }
+
+    &__help {
+      position: absolute;
+      top: 43px;
+      left: 758px;
+      width: 32px;
+      height: 32px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  // Тултип помощи
+  &__tooltip-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    &.active {
+      display: flex;
+    }
+  }
+
+  &__tooltip-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  &__tooltip {
+    position: relative;
+    width: 708px;
+    height: 208px;
+    background: #000000;
+    border-radius: 20px;
+    z-index: 2;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  &__tooltip-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // Фон вместо border-image
+    background: var(--accent);
+    border: none;
+
+    // Обрезаем углы с помощью clip-path
+    clip-path: polygon(
+      12px 0,
+      /* верхний левый угол со скосом */ 100% 0,
+      /* верхний правый */ 100% calc(100% - 12px),
+      /* нижний правый со скосом */ calc(100% - 12px) 100%,
+      /* нижний правый угол */ 0 100%,
+      /* нижний левый */ 0 12px /* верхний левый угол */
+    );
+
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+
+    img {
+      width: 32px;
+      height: 32px;
+      display: block;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+    }
+
+    &:active {
+      transform: translateY(0);
+      filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.35));
+    }
+  }
+
+  &__tooltip-text {
+    position: absolute;
+    top: 30px;
+    left: 132px;
+    width: 445px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 1.219;
+    text-align: center;
+    color: var(--white-100);
+    margin: 0;
+  }
+
+  &__tooltip-button {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 30px;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-decoration: none;
+
+    // Фон вместо border-image
+    background: var(--accent);
+    border: none;
+
+    // Обрезаем углы с помощью clip-path
+    clip-path: polygon(
+      12px 0,
+      /* верхний левый угол со скосом */ 100% 0,
+      /* верхний правый */ 100% calc(100% - 12px),
+      /* нижний правый со скосом */ calc(100% - 12px) 100%,
+      /* нижний правый угол */ 0 100%,
+      /* нижний левый */ 0 12px /* верхний левый угол */
+    );
+
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 1.219;
+    text-align: center;
+    color: var(--white-100);
+
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+
+    &:hover {
+      transform: translateX(-50%) translateY(-2px);
+      filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+    }
+
+    &:active {
+      transform: translateX(-50%) translateY(0);
+      filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.35));
+    }
+  }
+
+  @media (min-width: 768px) {
+    &__options {
+      position: relative;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      z-index: 2;
+      max-width: 600px;
+    }
+
+    &__option {
+      padding: 12px 20px;
+      background: none;
+      border: 1px solid var(--white-100);
+      border-radius: 40px;
+      cursor: pointer;
+      text-align: center;
+
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.219;
+      color: var(--white-100);
+      white-space: nowrap;
+
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: var(--accent);
+        background: rgba(101, 64, 251, 0.1);
+      }
+
+      &.active {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+  }
+
+  // Textarea для текста
+  &__textarea-wrapper {
+    position: relative;
+    padding: 0 40px;
+    z-index: 2;
+  }
+
+  &__textarea {
+    width: 730px;
+    height: 237px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    resize: none;
+
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.219;
+    color: var(--white-100);
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  // Checkbox список
+  &__checkboxes {
+    position: relative;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 2;
+  }
+
+  &__checkbox {
+    width: 313px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 30px;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    &:hover {
+      border-color: var(--accent);
+      background: rgba(101, 64, 251, 0.1);
+    }
+
+    input[type="checkbox"]:checked + &-text {
+      color: var(--white-100);
+    }
+
+    input[type="checkbox"]:checked ~ &-icon {
+      opacity: 1;
+    }
+  }
+
+  &__checkbox-text {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.219;
+    color: var(--white-100);
+    transition: color 0.3s ease;
+  }
+
+  &__checkbox-icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  &__footer {
+    position: absolute;
+    bottom: 20px;
+    left: 40px;
+    right: 420px;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+  }
+
+  &__progress {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.219;
+    color: var(--white-100);
+  }
+
+  &__progress-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+
+  &__progress-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  &__navigation {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  &__nav-button {
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &--back {
+      width: 50px;
+      height: 50px;
+      padding: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      // Фон вместо border-image
+      background: #131313;
+      border: none;
+
+      // Обрезаем углы с помощью clip-path
+      clip-path: polygon(
+        12px 0,
+        /* верхний левый угол со скосом */ 100% 0,
+        /* верхний правый */ 100% calc(100% - 12px),
+        /* нижний правый со скосом */ calc(100% - 12px) 100%,
+        /* нижний правый угол */ 0 100%,
+        /* нижний левый */ 0 12px /* верхний левый угол */
+      );
+
+      img {
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px;
+        min-height: 32px;
+        max-width: 32px;
+        max-height: 32px;
+        display: block;
+        flex-shrink: 0;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    &--next {
+      width: 180px;
+      height: 50px;
+      padding: 9px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      // Фон вместо border-image
+      background: var(--accent);
+      border: none;
+
+      // Обрезаем углы с помощью clip-path
+      clip-path: polygon(
+        12px 0,
+        /* верхний левый угол со скосом */ 100% 0,
+        /* верхний правый */ 100% calc(100% - 12px),
+        /* нижний правый со скосом */ calc(100% - 12px) 100%,
+        /* нижний правый угол */ 0 100%,
+        /* нижний левый */ 0 12px /* верхний левый угол */
+      );
+
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 1.219;
+      color: var(--white-100);
+
+      transition: transform 0.3s ease, filter 0.3s ease;
+      filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+
+      &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+      }
+
+      &:active:not(:disabled) {
+        transform: translateY(0);
+        filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.35));
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background: #263859;
+        filter: none;
+      }
+    }
+  }
+
+  // Радио-опции для слайда 4
+  &__radio-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 600px;
+    margin-top: 30px;
+    margin-left: 50px;
+  }
+
+  &__radio-option {
+    cursor: pointer;
+  }
+
+  &__radio-input {
+    display: none;
+  }
+
+  &__radio-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    background: transparent;
+    transition: all 0.3s ease;
+    width: 313px;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  &__radio-text {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--white-100);
+  }
+
+  &__radio-circle {
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  }
+
+  &__radio-input:checked + &__radio-button &__radio-circle {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  // Форма для слайда 5
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 398px;
+    position: absolute;
+    left: 40px;
+    top: 119px;
+    z-index: 2;
+  }
+
+  &__form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 12px 30px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 40px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.219;
+    color: var(--white-100);
+    transition: border-color 0.3s ease;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  &__contact-methods {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  &__contact-method {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+
+    input[type="radio"] {
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      cursor: pointer;
+      appearance: none;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      position: relative;
+      transition: all 0.3s ease;
+
+      &:checked {
+        border-color: var(--accent);
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: var(--accent);
+        }
+      }
+    }
+  }
+
+  &__contact-label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.219;
+    color: var(--white-100);
+    cursor: pointer;
+  }
+
+  &__textarea--large {
+    width: 398px;
+    height: 173px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.219;
+    color: var(--white-100);
+    resize: none;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  // Режим прямого открытия на слайде (скрываем прогресс, кнопку помощи и кнопку назад)
+  &.modal--direct-mode {
+    // Скрываем прогресс-бар и кнопку назад на слайде 5
+    .modal__slide[data-slide="5"].modal__slide--active {
+      .modal__footer {
+        .modal__progress {
+          display: none !important;
+        }
+
+        .modal__navigation {
+          .modal__nav-button--back {
+            display: none !important;
+          }
+        }
+      }
+
+      // Скрываем кнопку помощи
+      .modal__header {
+        .modal__help {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+  &__nav-button--submit {
+    width: 180px;
+    height: 50px;
+    padding: 9px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // Фон вместо border-image
+    background: var(--accent);
+    border: none;
+
+    // Обрезаем углы с помощью clip-path
+    clip-path: polygon(
+      12px 0,
+      /* верхний левый угол со скосом */ 100% 0,
+      /* верхний правый */ 100% calc(100% - 12px),
+      /* нижний правый со скосом */ calc(100% - 12px) 100%,
+      /* нижний правый угол */ 0 100%,
+      /* нижний левый */ 0 12px /* верхний левый угол */
+    );
+
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 1.219;
+    color: var(--white-100);
+
+    filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+    cursor: pointer;
+    transition: all 0.3s ease, filter 0.3s ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.35));
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: #263859;
+      filter: none;
+    }
+  }
+}

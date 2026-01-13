@@ -1,0 +1,54 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 30px;
+  min-width: 180px;
+  height: 50px;
+  position: relative;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  // Фон вместо border-image
+  background: var(--accent);
+  border: none;
+  
+  // Обрезаем углы с помощью clip-path
+  clip-path: polygon(
+    12px 0,                 /* верхний левый угол со скосом */
+    100% 0,                 /* верхний правый */
+    100% calc(100% - 12px), /* нижний правый со скосом */
+    calc(100% - 12px) 100%, /* нижний правый угол */
+    0 100%,                 /* нижний левый */
+    0 12px                  /* верхний левый угол */
+  );
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 1.219;
+  text-align: center;
+  color: var(--white-100);
+  text-decoration: none;
+
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  &__text {
+    position: relative;
+    z-index: 1;
+  }
+}
+

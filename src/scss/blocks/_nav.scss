@@ -1,0 +1,15 @@
+.header__nav {
+}
+.nav {
+	font-size: 18px;
+
+	@include mobile {
+		 display: none;
+	}
+}
+.nav__list {
+	display: flex;
+	column-gap: 30px;
+}
+.active {
+}

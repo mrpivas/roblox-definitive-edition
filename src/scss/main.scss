@@ -1,0 +1,34 @@
+/* Base */
+@import "./base/reset";
+@import "./base/vars";
+@import "./base/mixins";
+@import "./base/fontsAutoGen";
+@import "./base/base";
+@import "./base/utils";
+@import "./base/containers";
+@import "./base/sticky-footer";
+
+/* Blocks */
+@import "./blocks/header";
+@import "./blocks/mobile-menu";
+@import "./blocks/footer";
+@import "./blocks/button";
+@import "./blocks/modal";
+@import "./blocks/mobile-modal";
+@import "./blocks/fancybox-custom";
+
+/* Pages */
+@import "./pages/home/hero";
+@import "./pages/home/what-we-made";
+@import "./pages/home/about";
+@import "./pages/home/team";
+@import "./pages/home/reviews";
+@import "./pages/projects/projects";
+@import "./pages/game/hero";
+@import "./pages/game/about";
+@import "./pages/game/info";
+@import "./pages/services/hero";
+@import "./pages/services/catalog";
+@import "./pages/service-page/hero";
+@import "./pages/service-page/games";
+@import "./selection/params";

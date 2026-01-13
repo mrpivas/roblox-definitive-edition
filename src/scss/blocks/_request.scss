@@ -1,0 +1,384 @@
+.request {
+	width: 100%;
+
+	@include tablet {
+		margin-bottom: 80px;
+	}
+
+	@include mobile {
+		margin-bottom: 60px;
+		padding: 0; // Убираем padding от container на мобилке
+	}
+
+	&__content {
+		display: flex;
+		align-items: flex-start;
+		gap: 343px;
+		background-color: var(--grey-back);
+		border-radius: 40px;
+		padding: 60px 80px;
+
+		@include tablet {
+			gap: 50px;
+			padding: 50px 40px;
+		}
+
+		@include mobile {
+			flex-direction: column;
+			padding: 30px 30px 30px;
+			gap: 25px;
+			border-radius: 0;
+		}
+	}
+
+	&__left {
+		flex-shrink: 0;
+		width: 270px;
+
+		@include mobile {
+			width: 100%;
+		}
+	}
+
+	&__header {
+		display: none;
+
+		@include mobile {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 25px;
+		}
+	}
+
+	&__title {
+		font-family: var(--font-family);
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 140%;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+		color: var(--dark-100);
+		margin: 0 0 35px 0;
+
+		&--desktop {
+			@include mobile {
+				display: none;
+			}
+		}
+
+		&--mobile {
+			display: none;
+
+			@include mobile {
+				display: block;
+				font-size: 18px;
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	&__contact {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		margin-bottom: 32px;
+
+		&:last-of-type {
+			margin-bottom: 40px;
+		}
+
+		@include mobile {
+			margin-bottom: 20px;
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	&__contact-label {
+		font-family: var(--font-family);
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 140%;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+		color: var(--dark-100);
+
+		@include mobile {
+			font-size: 14px;
+		}
+	}
+
+	&__contact-value {
+		font-family: var(--font-family);
+		font-weight: 500;
+		font-size: 20px;
+		line-height: 140%;
+		text-transform: uppercase;
+		color: var(--orange-light);
+		text-decoration: none;
+		transition: opacity 0.3s ease;
+
+		&--email {
+			text-transform: lowercase;
+		}
+
+		&:hover {
+			opacity: 0.8;
+		}
+
+		@include mobile {
+			font-size: 20px;
+		}
+	}
+
+	&__socials {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+
+		&--desktop {
+			@include mobile {
+				display: none;
+			}
+		}
+
+		&--mobile {
+			display: none;
+
+			@include mobile {
+				display: flex;
+				gap: 10px;
+			}
+		}
+	}
+
+	&__social {
+		width: 53px;
+		height: 53px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--dark-100);
+		border-radius: 12px;
+		transition: background-color 0.3s ease;
+
+		&:hover {
+			background-color: var(--orange-light);
+		}
+
+		img {
+			width: 24px;
+			height: 20px;
+		}
+
+		@include mobile {
+			width: 40px;
+			height: 40px;
+
+			img {
+				width: 20px;
+				height: 20px;
+			}
+		}
+	}
+
+	&__right {
+		flex: 1;
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	&__field {
+		position: relative;
+	}
+
+	&__input {
+		width: 100%;
+		padding: 0 0 12px 0;
+		border: none;
+		border-bottom: 1px solid var(--dark-20);
+		background-color: transparent;
+		font-family: var(--font-family);
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 140%;
+		text-transform: uppercase;
+		color: var(--dark-80);
+		transition: border-color 0.3s ease;
+
+		&::placeholder {
+			color: var(--dark-80);
+			opacity: 1;
+		}
+
+		&:focus {
+			outline: none;
+			border-bottom-color: var(--dark-80);
+		}
+
+		@include mobile {
+			font-size: 18px;
+			padding-bottom: 12px;
+		}
+	}
+
+	&__checkbox {
+		margin-top: 8px;
+
+		@include mobile {
+			display: flex;
+			justify-content: center;
+		}
+	}
+
+	&__checkbox-label {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		cursor: pointer;
+	}
+
+	&__checkbox-input {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+
+		&:checked + .request__checkbox-box {
+			background-color: var(--dark-100);
+			border-color: var(--dark-100);
+
+			&::after {
+				opacity: 1;
+			}
+		}
+	}
+
+	&__checkbox-box {
+		position: relative;
+		flex-shrink: 0;
+		width: 12px;
+		height: 12px;
+		border: 1px solid var(--dark-100);
+		border-radius: 2px;
+		background-color: transparent;
+		transition: all 0.3s ease;
+		margin-top: 2px;
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 1px;
+			left: 3px;
+			width: 4px;
+			height: 7px;
+			border: solid var(--white-100);
+			border-width: 0 1.5px 1.5px 0;
+			transform: rotate(45deg);
+			opacity: 0;
+			transition: opacity 0.3s ease;
+		}
+	}
+
+	&__checkbox-text {
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 10px;
+		line-height: 140%;
+		text-transform: uppercase;
+		color: var(--dark-100);
+
+		@include mobile {
+			font-size: 9px;
+		}
+	}
+
+	&__checkbox-link {
+		color: var(--dark-100);
+		text-decoration: underline;
+		transition: color 0.3s ease;
+		border-bottom: 1px solid var(--dark-100);
+
+		&:hover {
+			color: var(--orange-light);
+		}
+	}
+
+	&__submit {
+		text-wrap: nowrap;
+		align-self: flex-start;
+		display: inline-flex;
+		align-items: center;
+		gap: 30px;
+		padding: 6px 6px 6px 30px;
+		background-color: var(--orange-light);
+		border: none;
+		border-radius: 30.5px;
+		cursor: pointer;
+		transition: background-color 0.3s ease, transform 0.2s ease;
+		margin-top: 12px;
+
+		font-family: var(--font-family);
+		font-weight: 700;
+		font-size: 16px;
+		line-height: 140%;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+		color: var(--white-100);
+
+		&:hover {
+			background-color: #d63508;
+			transform: translateY(-2px);
+
+			.request__submit-circle {
+				background-color: #b52d07;
+			}
+		}
+
+		&:active {
+			transform: translateY(0);
+		}
+
+		@include mobile {
+			align-self: center;
+			font-size: 14px;
+			padding: 6px 6px 6px 24px;
+			gap: 60px;
+		}
+	}
+
+	&__submit-circle {
+		width: 47px;
+		height: 47px;
+		border-radius: 23.5px;
+		background-color: var(--white-100);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		transition: background-color 0.3s ease;
+
+		img {
+			width: 23.88px;
+			height: 16px;
+		}
+
+		@include mobile {
+			width: 47px;
+			height: 47px;
+
+			img {
+				width: 23.88px;
+				height: 16px;
+			}
+		}
+	}
+}
+
+

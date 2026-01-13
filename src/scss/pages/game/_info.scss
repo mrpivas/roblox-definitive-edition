@@ -1,0 +1,372 @@
+.game-info {
+  padding: 80px 0;
+  position: relative;
+  overflow: visible;
+
+  // Фоновое изображение
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    background-image: url('../img/svgicons/bg/game.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  // Основной контент
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 120px;
+    margin-bottom: 90px;
+    position: relative;
+    z-index: 10;
+  }
+
+  // Левая карточка
+  &__card {
+    position: relative;
+    width: 480px;
+    height: 488px;
+    flex-shrink: 0;
+    background: #131922;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  // Фоновое изображение (скрыто)
+  &__bg-image {
+    display: none;
+  }
+
+  // Blur элементы (скрыты)
+  &__photo-blur {
+    display: none;
+  }
+
+  // Контент карточки
+  &__photo-content {
+    position: relative;
+    z-index: 3;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background: #131922;
+    border-radius: 20px;
+  }
+
+  // Логотип
+  &__logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 89px 171px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+
+  &__logo-text {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.22;
+    color: var(--white-100);
+  }
+
+  // Информация о клиенте
+  &__client-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  &__client-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 1.22;
+    text-transform: uppercase;
+    color: var(--white-100);
+  }
+
+  &__client-description {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.22;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  // Бейдж с датой
+  &__date-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.19);
+    border-radius: 40px;
+    width: fit-content;
+    margin-top: 40px;
+
+    span {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.22;
+      text-transform: uppercase;
+      color: var(--white-100);
+
+      strong {
+        font-weight: 700;
+      }
+    }
+  }
+
+  // Правая часть - описание
+  &__description {
+    flex: 1;
+    max-width: 534px;
+  }
+
+  &__title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.22;
+    text-transform: uppercase;
+    color: var(--white-100);
+    margin-bottom: 20px;
+  }
+
+  &__text {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.22;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+
+    &:last-of-type {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__button-wrapper {
+    filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+    }
+
+    &:active {
+      filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.35));
+    }
+  }
+
+  &__button {
+    width: 180px;
+    height: 50px;
+    padding: 9px 30px;
+  }
+
+  // Статистика
+  &__stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    padding-top: 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    width: 189px;
+  }
+
+  &__stat-value {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1.22;
+    text-align: center;
+    color: var(--white-100);
+    white-space: nowrap;
+  }
+
+  &__stat-label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.22;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  // Tablet адаптация
+  @include tablet {
+    padding: 60px 0;
+
+    &__content {
+      flex-direction: column;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+
+    &__card {
+      width: 400px;
+      height: 406px;
+    }
+
+    &__photo-card {
+      inset: 75px auto auto 100px;
+      width: 400px;
+      height: 406px;
+    }
+
+    &__description {
+      padding-top: 0;
+      max-width: 100%;
+    }
+
+    &__title {
+      font-size: 24px;
+    }
+
+    &__text {
+      font-size: 16px;
+    }
+
+    &__stats {
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    &__stat {
+      width: 150px;
+    }
+
+    &__stat-value {
+      font-size: 32px;
+    }
+
+    &__stat-label {
+      font-size: 14px;
+    }
+  }
+
+  // Mobile адаптация
+  @include mobile {
+    padding: 40px 0;
+
+    &__content {
+      flex-direction: column;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    &__card {
+      width: 100%;
+      max-width: 335px;
+      height: 389px;
+      margin: 0 auto;
+    }
+
+    &__photo-content {
+      padding: 20px;
+    }
+
+    &__logo-box {
+      height: 144px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__logo-text {
+      font-size: 18px;
+    }
+
+    &__client-info {
+      margin-top: 20px;
+    }
+
+    &__client-title {
+      font-size: 20px;
+    }
+
+    &__client-description {
+      font-size: 14px;
+    }
+
+    &__date-badge {
+      padding: 12px 20px;
+      margin-top: 16px;
+
+      span {
+        font-size: 16px;
+      }
+    }
+
+    &__description {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+
+    &__title {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    &__text {
+      font-size: 14px;
+      margin-bottom: 20px;
+
+      &:last-of-type {
+        margin-bottom: 40px;
+      }
+    }
+
+    &__button {
+      width: 180px;
+      height: 50px;
+      padding: 9px 30px;
+      font-size: 14px;
+    }
+
+    &__stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    &__stat {
+      width: 100%;
+    }
+
+    &__stat-value {
+      font-size: 24px;
+    }
+
+    &__stat-label {
+      font-size: 14px;
+    }
+  }
+}

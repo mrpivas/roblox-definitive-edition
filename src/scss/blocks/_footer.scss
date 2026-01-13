@@ -1,0 +1,437 @@
+.footer {
+  position: relative;
+  width: 100%;
+  padding: 40px 0 30px;
+  background: #131922;
+  border-radius: 40px 40px 0 0;
+  border-top: 1px solid transparent;
+  overflow: hidden;
+
+  // Радиальный градиент по верхней границе
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: radial-gradient(
+      circle at 50% 0%,
+      rgba(101, 64, 251, 1) 0%,
+      rgba(60, 38, 149, 0) 100%
+    );
+    z-index: 1;
+  }
+
+  // === ВЕРХНЯЯ ЧАСТЬ ===
+
+  &__content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 30px;
+  }
+
+  // Левая часть: логотип и слоган
+  &__left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+
+  &__tagline {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.22;
+    color: var(--white-100);
+    margin: 0;
+    max-width: 120px;
+  }
+
+  // Навигация по центру
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 65px;
+    margin-top: 22px;
+  }
+
+  &__nav-link {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.22;
+    color: var(--white-100);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  // Кнопка наверх
+  &__scroll-top {
+    width: 50px;
+    height: 50px;
+    background: var(--accent);
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 9px 7px;
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    &:hover {
+      background: lighten(#6540fb, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0px 0px 40px 0px rgba(113, 82, 239, 0.75);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0px 0px 20px 0px rgba(113, 82, 239, 0.35);
+    }
+  }
+
+  // Кнопки справа
+  &__actions {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  &__button-wrapper {
+    filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+    }
+
+    &:active {
+      filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.45));
+    }
+  }
+
+  &__button {
+    width: 180px;
+    height: 50px;
+  }
+
+  // Соцсети в actions - только на мобильных
+  &__actions &__socials {
+    display: none;
+  }
+
+  // === ЛИНИЯ РАЗДЕЛИТЕЛЬ ===
+
+  &__line {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 30px;
+  }
+
+  // === НИЖНЯЯ ЧАСТЬ ===
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  &__link {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.22;
+    color: var(--white-70);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--white-100);
+    }
+
+    &:first-child {
+      max-width: 290px;
+    }
+
+    &:nth-child(2) {
+      max-width: 276px;
+    }
+  }
+
+  &__socials {
+    display: none; // Скрыто по умолчанию (в actions для мобильных)
+
+    &--desktop {
+      display: flex; // Показываем на десктопе
+      align-items: center;
+      gap: 40px;
+    }
+  }
+
+  &__social {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.22;
+    color: var(--white-100);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  // === АДАПТИВНОСТЬ ===
+
+  @include tablet {
+    padding: 40px 0 30px;
+    border-radius: 30px 30px 0 0;
+
+    &__content {
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    &__left {
+      flex: 0 0 100%;
+      order: -1;
+      gap: 15px;
+    }
+
+    &__logo {
+      width: 50px;
+      height: 50px;
+    }
+
+    &__tagline {
+      font-size: 11px;
+      max-width: 110px;
+    }
+
+    &__nav {
+      flex: 1;
+      flex-wrap: wrap;
+      gap: 40px 30px;
+      margin-top: 0;
+    }
+
+    &__nav-link {
+      font-size: 11px;
+    }
+
+    &__actions {
+      flex: 0 0 auto;
+      order: 1;
+    }
+
+    &__button {
+      width: 160px;
+      height: 45px;
+    }
+
+    &__scroll-top {
+      width: 45px;
+      height: 45px;
+
+      svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    &__line {
+      margin-bottom: 25px;
+    }
+
+    &__bottom {
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    &__links {
+      gap: 20px;
+    }
+
+    &__link {
+      font-size: 11px;
+
+      &:first-child,
+      &:nth-child(2) {
+        max-width: none;
+        flex: 1 1 45%;
+      }
+    }
+
+    &__socials--desktop {
+      flex: 1 1 100%;
+      gap: 30px;
+    }
+
+    &__social {
+      font-size: 11px;
+    }
+  }
+
+  @include mobile {
+    padding: 20px 0 20px;
+    border-radius: 20px 20px 0 0;
+
+    &__content {
+      display: grid;
+      grid-template-columns: 1fr 180px;
+      grid-template-rows: auto;
+      gap: 30px 20px;
+      margin-bottom: 30px;
+    }
+
+    &__left {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    &__logo {
+      width: 60px;
+      height: 60px;
+    }
+
+    &__tagline {
+      font-size: 12px;
+      max-width: 120px;
+      line-height: 1.22;
+      margin-top: 7px;
+    }
+
+    &__scroll-top {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+      width: 50px;
+      height: 50px;
+      flex-shrink: 0;
+      justify-self: end;
+      align-self: start;
+    }
+
+    &__nav {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 42px;
+      margin-top: 0;
+    }
+
+    &__nav-link {
+      font-size: 18px;
+      line-height: 1.22;
+    }
+
+    &__actions {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 42px;
+      width: 180px;
+
+      // Скрываем кнопку "Наверх" из actions на мобильных (она отдельно в grid)
+      .footer__scroll-top {
+        display: none;
+      }
+
+      // Показываем соцсети из actions на мобильных
+      .footer__socials {
+        display: flex !important;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 42px;
+        width: 180px;
+        margin-top: 95px; // Отступ для выравнивания с "О нас"
+      }
+    }
+
+    &__button {
+      width: 180px;
+      height: 50px;
+    }
+
+    &__socials--desktop {
+      display: none; // Скрываем desktop-версию соцсетей на мобильных
+    }
+
+    &__social {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.22;
+      text-align: left;
+    }
+
+    &__line {
+      margin-bottom: 20px;
+    }
+
+    &__bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    &__links {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    &__link {
+      font-size: 12px;
+      line-height: 1.22;
+      max-width: none !important;
+      width: 100%;
+
+      &:first-child {
+        order: 2;
+      }
+
+      &:nth-child(2) {
+        order: 1;
+      }
+    }
+  }
+}

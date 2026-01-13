@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Информация об игре - геймплей, особенности и детали" />
+		<title>Игра | Hoorobes</title>
+		<link rel="stylesheet" href="./css/main.css" />
+	</head>
+	<body>
+		<!-- Header -->
+		<svg width="0" height="0" style="position: absolute;">
+			<defs>
+				<filter id="liquid-glass-header" x="-50%" y="-50%" width="200%" height="200%">
+					<feTurbulence type="fractalNoise" baseFrequency="0.015 0.015" numOctaves="3" seed="7" result="turbulence" />
+					<feGaussianBlur in="turbulence" stdDeviation="1" result="smoothNoise" />
+					<feDisplacementMap in="SourceGraphic" in2="smoothNoise" scale="8" xChannelSelector="R" yChannelSelector="G" result="distorted" />
+					<feGaussianBlur in="distorted" stdDeviation="0.2" />
+				</filter>
+			</defs>
+		</svg>
+
+		<header class="header" role="banner">
+			<div class="container">
+				<div class="header__content">
+					<a href="./index.html" class="header__logo" aria-label="Главная страница">
+						<img src="./img/svgicons/all/logo.svg" alt="Логотип компании" width="50" height="50" />
+					</a>
+
+					<nav class="header__nav nav" role="navigation" aria-label="Основная навигация">
+						<a href="./services.html" class="nav__link" data-page="services">
+							<span class="nav__link-blur"></span>
+							<span class="nav__link-text">Услуги</span>
+						</a>
+						<a href="./projects.html" class="nav__link" data-page="projects">
+							<span class="nav__link-blur"></span>
+							<span class="nav__link-text">Кейсы</span>
+						</a>
+						<a href="./index.html#about" class="nav__link" data-page="about">
+							<span class="nav__link-blur"></span>
+							<span class="nav__link-text">О&#160;нас</span>
+						</a>
+						<a href="./index.html#team" class="nav__link" data-page="team">
+							<span class="nav__link-blur"></span>
+							<span class="nav__link-text">Команда</span>
+						</a>
+					</nav>
+
+					<div class="header__button-wrapper">
+						<button class="header__button button" data-modal-open="briefModal" aria-label="Оформить заказ">
+							<span class="button__text">Сделать заказ</span>
+						</button>
+					</div>
+
+					<button class="header__menu-toggle" aria-label="Открыть меню" aria-expanded="false">
+						<div class="header__menu-icon">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+					</button>
+				</div>
+			</div>
+		</header>
+
+		<div class="mobile-menu-overlay"></div>
+
+		<div class="mobile-menu">
+			<nav class="mobile-menu__nav">
+				<a href="./services.html" class="mobile-menu__link">Услуги</a>
+				<a href="./projects.html" class="mobile-menu__link">Кейсы</a>
+				<a href="./index.html#about" class="mobile-menu__link">О&#160;нас</a>
+				<a href="./index.html#team" class="mobile-menu__link">Команда</a>
+			</nav>
+
+			<div class="mobile-menu__button-wrapper">
+				<button class="mobile-menu__button button" data-modal-open="briefModal" aria-label="Начать проект">
+					<span class="button__text">Начать проект</span>
+				</button>
+			</div>
+
+			<div class="mobile-menu__socials">
+				<a href="#" class="mobile-menu__social" aria-label="Telegram">
+					<img src="./img/svgicons/all/tg.svg" alt="Telegram" width="32" height="32" />
+				</a>
+				<a href="#" class="mobile-menu__social" aria-label="Discord">
+					<img src="./img/svgicons/all/discord.svg" alt="Discord" width="32" height="32" />
+				</a>
+			</div>
+		</div>
+
+		<!-- Main Content -->
+		<main class="game-page">
+			<svg width="0" height="0" style="position: absolute;">
+				<defs>
+					<filter id="liquid-glass-play-button">
+						<feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" result="noise" />
+						<feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+					</filter>
+				</defs>
+			</svg>
+
+			<section class="game-hero">
+				<picture>
+					<source srcset="./img/game/hero.webp" type="image/webp" />
+					<img src="./img/game/hero.png" alt="Превью видео игры" class="game-hero__preview" />
+				</picture>
+
+				<div class="game-hero__overlay"></div>
+
+				<a href="./img/example.mp4" data-fancybox="game-video" class="game-hero__play-button" aria-label="Воспроизвести видео">
+					<svg class="game-hero__play-icon" width="40" height="48" viewBox="0 0 40 48" fill="none" aria-hidden="true">
+						<path d="M2 2L38 24L2 46V2Z" fill="white" stroke="white" stroke-width="3" stroke-linejoin="round" />
+					</svg>
+				</a>
+			</section>
+			<section class="game-info">
+				<!-- Фоновое изображение -->
+				<div class="game-info__bg"></div>
+
+				<div class="container">
+					<div class="game-info__content">
+						<div class="game-info__card">
+							<picture>
+								<source srcset="./img/game/hero.webp" type="image/webp" />
+								<img src="./img/game/hero.png" alt="Фон игры" class="game-info__bg-image" />
+							</picture>
+
+							<div class="game-info__photo-blur game-info__photo-blur--1"></div>
+							<div class="game-info__photo-blur game-info__photo-blur--2"></div>
+
+							<div class="game-info__photo-content">
+								<div class="game-info__logo-box">
+									<span class="game-info__logo-text">Логотип</span>
+								</div>
+
+								<div class="game-info__client-info">
+									<h3 class="game-info__client-title">Клиент</h3>
+									<p class="game-info__client-description">
+										Hooroobes&#160;&#8212; студия разработки игр нового поколения. Мы&#160;создаём авторские миры с&#160;уникальной визуальной ДНК
+										и&#160;механиками, от которых невозможно оторваться
+									</p>
+								</div>
+
+								<div class="game-info__date-badge">
+									<span><strong>Дата:</strong> 13.09.2025</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="game-info__description">
+							<h2 class="game-info__title">Название игры</h2>
+							<p class="game-info__text">
+								Hooroobes&#160;&#8212; студия разработки игр нового поколения. Мы&#160;создаём авторские миры с&#160;уникальной визуальной ДНК и&#160;механиками,
+								от&#160;которых невозможно оторваться. От&#160;атмосферных инди-проектов до&#160;амбициозных тайтлов, готовых ворваться в&#160;глобальные топы.
+							</p>
+							<p class="game-info__text">
+								Каждый наш проект&#160;&#8212; это не&#160;просто игра, а&#160;целая вселенная с харизматичными персонажами и&#160;историей, в&#160;которую хочется
+								возвращаться.
+							</p>
+							<div class="game-info__button-wrapper">
+								<a href="#" class="game-info__button button" aria-label="Играть в игру">
+									Играть в&#160;игру
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="game-info__stats">
+						<div class="game-info__stat">
+							<div class="game-info__stat-value">32,9 тыс</div>
+							<div class="game-info__stat-label">
+								Игроки которые играют прямо сейчас
+							</div>
+						</div>
+						<div class="game-info__stat">
+							<div class="game-info__stat-value">32,9 тыс</div>
+							<div class="game-info__stat-label">
+								Игроки которые играют прямо сейчас
+							</div>
+						</div>
+						<div class="game-info__stat">
+							<div class="game-info__stat-value">32,9 тыс</div>
+							<div class="game-info__stat-label">
+								Игроки которые играют прямо сейчас
+							</div>
+						</div>
+						<div class="game-info__stat">
+							<div class="game-info__stat-value">32,9 тыс</div>
+							<div class="game-info__stat-label">
+								Игроки которые играют прямо сейчас
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="game-about">
+				<!-- Фоновое изображение -->
+				<div class="game-about__bg">
+					<div class="game-about__bg-image"></div>
+				</div>
+
+				<div class="container">
+					<div class="game-about__hero">
+						<picture>
+							<source srcset="./img/game/hero.webp" type="image/webp" />
+							<img src="./img/game/hero.png" alt="О игре" class="game-about__hero-image" />
+						</picture>
+						<div class="game-about__hero-overlay"></div>
+					</div>
+
+					<p class="game-about__description">
+						Hooroobes&#160;&#8212; студия разработки игр нового поколения. Мы&#160;создаём авторские миры с&#160;уникальной визуальной ДНК и&#160;механиками,
+						от&#160;которых невозможно оторваться. От&#160;атмосферных инди-проектов до&#160;амбициозных тайтлов, готовых ворваться в&#160;глобальные топы.
+					</p>
+
+					<div class="game-about__button-wrapper">
+						<a href="#" class="game-about__button button" aria-label="Играть в игру">
+							Играть в&#160;игру
+						</a>
+					</div>
+				</div>
+
+				<div class="game-about__slider">
+					<div class="game-about__slider-track">
+						<div class="game-about__slide">
+							<picture>
+								<source srcset="./img/game/gallery-1.webp" type="image/webp" />
+								<img src="./img/game/gallery-1.png" alt="Скриншот игры 1" />
+							</picture>
+						</div>
+						<div class="game-about__slide">
+							<picture>
+								<source srcset="./img/game/gallery-2.webp" type="image/webp" />
+								<img src="./img/game/gallery-2.png" alt="Скриншот игры 2" />
+							</picture>
+						</div>
+						<div class="game-about__slide">
+							<picture>
+								<source srcset="./img/game/gallery-3.webp" type="image/webp" />
+								<img src="./img/game/gallery-3.png" alt="Скриншот игры 3" />
+							</picture>
+						</div>
+
+						<div class="game-about__slide">
+							<picture>
+								<source srcset="./img/game/gallery-1.webp" type="image/webp" />
+								<img src="./img/game/gallery-1.png" alt="Скриншот игры 1" />
+							</picture>
+						</div>
+						<div class="game-about__slide">
+							<picture>
+								<source srcset="./img/game/gallery-2.webp" type="image/webp" />
+								<img src="./img/game/gallery-2.png" alt="Скриншот игры 2" />
+							</picture>
+						</div>
+						<div class="game-about__slide">
+							<picture>
+								<source srcset="./img/game/gallery-3.webp" type="image/webp" />
+								<img src="./img/game/gallery-3.png" alt="Скриншот игры 3" />
+							</picture>
+						</div>
+
+						<div class="game-about__slide">
+							<picture>
+								<source srcset="./img/game/gallery-1.webp" type="image/webp" />
+								<img src="./img/game/gallery-1.png" alt="Скриншот игры 1" />
+							</picture>
+						</div>
+						<div class="game-about__slide">
+							<picture>
+								<source srcset="./img/game/gallery-2.webp" type="image/webp" />
+								<img src="./img/game/gallery-2.png" alt="Скриншот игры 2" />
+							</picture>
+						</div>
+						<div class="game-about__slide">
+							<picture>
+								<source srcset="./img/game/gallery-3.webp" type="image/webp" />
+								<img src="./img/game/gallery-3.png" alt="Скриншот игры 3" />
+							</picture>
+						</div>
+					</div>
+				</div>
+
+				<div class="container">
+					<div class="game-about__navigation">
+						<button class="game-about__nav game-about__nav--prev" aria-label="Предыдущий слайд">
+							<img src="./img/svgicons/all/arrow-active.svg" alt="" aria-hidden="true" />
+						</button>
+						<button class="game-about__nav game-about__nav--next" aria-label="Следующий слайд">
+							<img src="./img/svgicons/all/arrow-active.svg" alt="" aria-hidden="true" />
+						</button>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="container">
+				<div class="footer__content">
+					<div class="footer__left">
+						<img src="./img/svgicons/all/logo.svg" alt="Logo" class="footer__logo" />
+						<p class="footer__tagline">
+							Ваш мир.<br />
+							Ваши правила.<br />
+							Наша реализация.
+						</p>
+					</div>
+
+					<nav class="footer__nav">
+						<a href="./index.html" class="footer__nav-link">Главная</a>
+						<a href="./services.html" class="footer__nav-link">Услуги</a>
+						<a href="./projects.html" class="footer__nav-link">Проекты</a>
+						<a href="./index.html#about" class="footer__nav-link">О&#160;нас</a>
+						<a href="./index.html#team" class="footer__nav-link">Команда</a>
+					</nav>
+
+					<div class="footer__actions">
+						<div class="footer__button-wrapper">
+							<button type="button" class="footer__button button" data-modal-open="briefModal" aria-label="Оформить заказ">Сделать заказ</button>
+						</div>
+
+						<button class="footer__scroll-top" aria-label="Наверх" type="button">
+							<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M16 5L7 14L8.4 15.45L15 8.85V27H17V8.85L23.6 15.45L25 14L16 5Z" fill="white" />
+							</svg>
+						</button>
+
+						<div class="footer__socials">
+							<a href="https://t.me/yourhandle" class="footer__social" target="_blank" rel="noopener noreferrer">Telegram</a>
+							<a href="https://discord.gg/yourserver" class="footer__social" target="_blank" rel="noopener noreferrer">Discord</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="footer__line"></div>
+
+				<div class="footer__bottom">
+					<div class="footer__links">
+						<a href="#privacy" class="footer__link">Политика обработки персональных данных</a>
+						<a href="#consent" class="footer__link">Согласие на&#160;обработку персональных данных</a>
+					</div>
+
+					<div class="footer__socials footer__socials--desktop">
+						<a href="https://t.me/yourhandle" class="footer__social" target="_blank" rel="noopener noreferrer">Telegram</a>
+						<a href="https://discord.gg/yourserver" class="footer__social" target="_blank" rel="noopener noreferrer">Discord</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+		<script src="./js/index.bundle.js"></script>
+	</body>
+</html>

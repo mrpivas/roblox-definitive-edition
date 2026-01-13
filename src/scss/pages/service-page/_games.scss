@@ -1,0 +1,409 @@
+.service-games {
+  padding: 80px 0;
+  position: relative;
+  background: #000000;
+
+  // Черный фон на всю ширину экрана
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100%;
+    background: #000000;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  // Фиолетовое свечение слева от "наши работы"
+  &::after {
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: -150px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle at center,
+      rgba(101, 64, 251, 0.45) 0%,
+      rgba(101, 64, 251, 0.25) 40%,
+      transparent 70%
+    );
+    filter: blur(100px);
+    -webkit-filter: blur(100px);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 10;
+  }
+
+  // Бесконечный слайдер
+  &__slider {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 100px;
+    position: relative;
+    z-index: 10;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &:hover {
+      .service-games__slider-track {
+        animation-play-state: paused;
+      }
+    }
+  }
+
+  &__slider-track {
+    display: flex;
+    gap: 20px;
+    animation: scroll-games 30s linear infinite;
+    width: fit-content;
+  }
+
+  &__slide {
+    flex-shrink: 0;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    img {
+      width: 600px;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+      border-radius: 20px;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      pointer-events: none;
+    }
+  }
+
+  &__slide-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 170px;
+  }
+
+  &__slide-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 1.219;
+    color: var(--white-100);
+    margin: 0;
+  }
+
+  &__slide-desc {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.219;
+    color: var(--white-100);
+    margin: 0;
+  }
+
+  // Анимация бесконечной прокрутки
+  @keyframes scroll-games {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-620px * 3)); // (600px + 20px gap) * 3 слайда
+    }
+  }
+
+  // Заголовок секции
+  &__title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.219;
+    text-transform: uppercase;
+    color: var(--white-100);
+    margin: 0 0 40px;
+    position: relative;
+    z-index: 10;
+  }
+
+  // Grid карточек
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__card-image {
+    width: 100%;
+    height: 220px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 170px;
+  }
+
+  &__card-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 1.219;
+    color: var(--white-100);
+    margin: 0;
+  }
+
+  &__card-desc {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.219;
+    color: var(--white-100);
+    margin: 0;
+  }
+
+  // Кнопка "Загрузить ещё" со скошенными углами (как в projects)
+  &__load-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 180px;
+    height: 50px;
+    padding: 13px 38px;
+    position: relative;
+    box-sizing: border-box;
+    z-index: 10;
+    white-space: nowrap;
+
+    // Фон вместо border-image
+    background: #263859;
+    border: none;
+    
+    // Обрезаем углы с помощью clip-path
+    clip-path: polygon(
+      12px 0,                 /* верхний левый угол со скосом */
+      100% 0,                 /* верхний правый */
+      100% calc(100% - 12px), /* нижний правый со скосом */
+      calc(100% - 12px) 100%, /* нижний правый угол */
+      0 100%,                 /* нижний левый */
+      0 12px                  /* верхний левый угол */
+    );
+    cursor: pointer;
+    overflow: visible;
+
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 1.22;
+    text-align: center;
+    color: var(--white-100);
+
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // Навигация слайдера
+  &__navigation {
+    display: none; // Скрыто на десктопе
+  }
+
+  &__nav {
+    width: 100px;
+    height: 15px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    &--prev {
+      transform: scaleX(-1);
+
+      &:hover {
+        transform: scaleX(-1) scale(1.05);
+      }
+
+      &:active {
+        transform: scaleX(-1) scale(0.95);
+      }
+    }
+
+    &--next {
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  // Адаптация для планшетов
+  @include tablet {
+    padding: 60px 0;
+
+    &__slider {
+      margin-bottom: 80px;
+    }
+
+    &__slide {
+      width: 500px;
+
+      img {
+        width: 500px;
+        height: 267px;
+      }
+    }
+
+    @keyframes scroll-games {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-520px * 3));
+      }
+    }
+
+    &__title {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    &__card-image {
+      height: 200px;
+    }
+  }
+
+  // Адаптация для мобильных
+  @include mobile {
+    padding: 40px 0;
+
+    &__slider {
+      margin-bottom: 60px;
+    }
+
+    &__slide {
+      width: 350px;
+
+      img {
+        width: 350px;
+        height: 187px;
+      }
+    }
+
+    &__slide-text {
+      width: 140px;
+    }
+
+    &__slide-title {
+      font-size: 16px;
+    }
+
+    &__slide-desc {
+      font-size: 12px;
+    }
+
+    @keyframes scroll-games {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-370px * 3));
+      }
+    }
+
+    &__title {
+      font-size: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    &__card-image {
+      height: 180px;
+    }
+
+    &__card-text {
+      width: 100%;
+    }
+
+    &__navigation {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      margin-top: 30px;
+      margin-bottom: 60px;
+    }
+
+    &__load-more {
+      width: 100%;
+      max-width: 335px;
+    }
+  }
+}

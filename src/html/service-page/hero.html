@@ -1,0 +1,90 @@
+<section class="service-page-hero">
+  <!-- Фоновое изображение -->
+  <div class="service-page-hero__bg">
+    <div class="service-page-hero__bg-image"></div>
+  </div>
+
+  <div class="container">
+    <h1 class="service-page-hero__title">Название страницы услуги</h1>
+
+    <div class="service-page-hero__card">
+      <svg width="0" height="0" style="position: absolute">
+        <defs>
+          <filter
+            id="liquid-glass-service"
+            x="-50%"
+            y="-50%"
+            width="200%"
+            height="200%"
+          >
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.015 0.015"
+              numOctaves="3"
+              seed="5"
+            />
+            <feDisplacementMap in="SourceGraphic" scale="8" />
+          </filter>
+        </defs>
+      </svg>
+
+      <div class="service-page-hero__glass"></div>
+
+      <div class="service-page-hero__image">
+        <img
+          src="./img/service-page/hero.png"
+          alt="Скриншот игры"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <p class="service-page-hero__description">
+      Hooroobes — студия разработки игр нового поколения. Мы создаём авторские
+      миры с уникальной визуальной ДНК и механиками, от которых невозможно
+      оторваться. От атмосферных инди-проектов до амбициозных тайтлов, готовых
+      ворваться в глобальные топы.
+    </p>
+
+    <div class="service-page-hero__button-wrapper">
+      <button
+        type="button"
+        class="service-page-hero__button button"
+        data-modal-open="briefModal"
+        aria-label="Заказать услугу"
+      >
+        Заказать услугу
+      </button>
+    </div>
+
+    <div class="service-page-hero__stats">
+      <div class="service-page-hero__stat">
+        <p class="service-page-hero__stat-number">32,9 тыс</p>
+        <p class="service-page-hero__stat-text">
+          Игроки которые играют прямо сейчас
+        </p>
+      </div>
+
+      <div class="service-page-hero__stat">
+        <p class="service-page-hero__stat-number">32,9 тыс</p>
+        <p class="service-page-hero__stat-text">
+          Игроки которые играют прямо сейчас
+        </p>
+      </div>
+
+      <div class="service-page-hero__stat">
+        <p class="service-page-hero__stat-number">32,9 тыс</p>
+        <p class="service-page-hero__stat-text">
+          Игроки которые играют прямо сейчас
+        </p>
+      </div>
+
+      <div class="service-page-hero__stat">
+        <p class="service-page-hero__stat-number">32,9 тыс</p>
+        <p class="service-page-hero__stat-text">
+          Игроки которые играют прямо сейчас
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

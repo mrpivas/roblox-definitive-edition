@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>SVG stack preview | svg-sprite</title>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+                color: #666;
+                background: #fafafa;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 1em;
+                line-height: 1.4;
+            }
+
+            header {
+                display: block;
+                padding: 3em 3em 2em;
+                background-color: #fff;
+            }
+
+            header p {
+                margin: 2em 0 0;
+            }
+
+            section {
+                border-top: 1px solid #eee;
+                padding: 2em 3em 0;
+            }
+
+            section ul {
+                margin: 0;
+                padding: 0;
+            }
+
+            section li {
+                display: inline-block;
+                background-color: #fff;
+                position: relative;
+                margin: 0 2em 2em 0;
+                vertical-align: top;
+                border: 1px solid #ccc;
+                padding: 1em 1em 3em;
+                cursor: default;
+            }
+
+            .icon-box {
+                margin: 0;
+                width: 144px;
+                height: 144px;
+                position: relative;
+                background: #ccc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath fill='%23fff' d='M6 0h6v6H6zM0 6h6v6H0z'/%3E%3C/svg%3E") top left repeat;
+                border: 1px solid #ccc;
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+            }
+
+            .icon {
+                display: inline-block;
+            }
+
+            h1 {
+                margin-top: 0;
+            }
+
+            h2 {
+                margin: 0;
+                padding: 0;
+                font-size: 1em;
+                font-weight: 400;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                position: absolute;
+                left: 1em;
+                right: 1em;
+                bottom: 1em;
+            }
+
+            footer {
+                display: block;
+                margin: 0;
+                padding: 0 3em 3em;
+            }
+
+            footer p {
+                margin: 0;
+                font-size: .7em;
+            }
+
+            footer a {
+                color: #0f7595;
+                margin-left: 0;
+            }
+        </style>
+
+<!--
+Sprite shape dimensions
+====================================================================================================
+You will need to set the sprite shape dimensions via CSS when you use them as stack SVGs, otherwise
+they would become a huge 100% in size. You may use the following dimension classes for doing so.
+They might well be outsourced to an external stylesheet of course.
+-->
+
+<style>
+ .svg-all--arrow-active-dims { width: 101px; height: 15px; }
+ .svg-all--arrow-non-active-dims { width: 101px; height: 15px; }
+ .svg-all--discord-dims { width: 32px; height: 32px; }
+ .svg-all--logo-dims { width: 50px; height: 50px; }
+ .svg-all--minus-dims { width: 20px; height: 20px; }
+ .svg-all--monster-dims { width: 56px; height: 60px; }
+ .svg-all--plus-dims { width: 20px; height: 20px; }
+ .svg-all--quote-dims { width: 25px; height: 20px; }
+ .svg-all--tg-dims { width: 33px; height: 27px; }
+ .svg-bg--game-dims { width: 1440px; height: 1863px; }
+ .svg-bg--game_about-dims { width: 1440px; height: 1393px; }
+ .svg-bg--home_about-dims { width: 1374.7px; height: 2000px; }
+ .svg-bg--home_hero-dims { width: 1440px; height: 1224px; }
+ .svg-bg--home_made-dims { width: 1440px; height: 1888px; }
+ .svg-bg--home_team-dims { width: 1426px; height: 1087px; }
+ .svg-bg--our_works-dims { width: 1440px; height: 1087px; }
+ .svg-bg--process-dims { width: 1202px; height: 472px; }
+ .svg-bg--projects-dims { width: 1426.45px; height: 2000px; }
+ .svg-bg--selection-dims { width: 1440px; height: 904px; }
+ .svg-bg--service-page-hero-dims { width: 1440px; height: 958px; }
+ .svg-bg--services_hero-dims { width: 1440px; height: 1522px; }
+ .svg-modal--back-dims { width: 32px; height: 32px; }
+ .svg-modal--cross-dims { width: 32px; height: 32px; }
+ .svg-modal--discord-dims { width: 32px; height: 32px; }
+ .svg-modal--help-dims { width: 32px; height: 32px; }
+ .svg-modal--tg-dims { width: 33px; height: 27px; }
+ .svg-projects--arrow-dims { width: 20px; height: 20px; }
+ .svg-services--line-1-dims { width: 108px; height: 36px; }
+ .svg-services--line-2-dims { width: 108px; height: 36px; }
+</style>
+
+<!--
+====================================================================================================
+-->
+
+    </head>
+    <body>
+        <header>
+            <h1>SVG stack preview</h1>
+            <p>This preview features an SVG stack. Please have a look at the HTML source for further details and be aware of the following constraints:</p>
+            <ul>
+                <li>Your browser has to <a href="https://caniuse.com/svg-fragment" target="_blank" rel="noopener noreferrer">support SVG fragment identifiers</a> for SVG stacks to work.</li>
+                <li>Support for SVG fragment identifiers hasn't always been that decent. For older browsers you will have to use some prolyfill like <a href="https://github.com/preciousforever/SVG-Stacker/blob/master/fixsvgstack.jquery.js" target="_blank" rel="noopener noreferrer">fixsvgstack.jquery.js</a>.</li>
+            </ul>
+        </header>
+        <section>
+
+<!--
+SVG stack
+====================================================================================================
+These SVG images make use of fragment identifiers (IDs) to reference certain portions of the
+external sprite. By default, all shapes inside the sprite are hidden by CSS. The `:target` pseudo
+selector is used to show the very shape that is referenced by the fragment identifier.
+-->
+
+            <ul>
+
+             <li title="all--arrow-active">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#all--arrow-active" class="svg-all--arrow-active-dims" alt="all--arrow-active">
+                    </div>
+                    <h2>all--arrow-active, </h2>
+                </li>
+             <li title="all--arrow-non-active">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#all--arrow-non-active" class="svg-all--arrow-non-active-dims" alt="all--arrow-non-active">
+                    </div>
+                    <h2>all--arrow-non-active, </h2>
+                </li>
+             <li title="all--discord">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#all--discord" class="svg-all--discord-dims" alt="all--discord">
+                    </div>
+                    <h2>all--discord, </h2>
+                </li>
+             <li title="all--logo">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#all--logo" class="svg-all--logo-dims" alt="all--logo">
+                    </div>
+                    <h2>all--logo, </h2>
+                </li>
+             <li title="all--minus">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#all--minus" class="svg-all--minus-dims" alt="all--minus">
+                    </div>
+                    <h2>all--minus, </h2>
+                </li>
+             <li title="all--monster">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#all--monster" class="svg-all--monster-dims" alt="all--monster">
+                    </div>
+                    <h2>all--monster, </h2>
+                </li>
+             <li title="all--plus">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#all--plus" class="svg-all--plus-dims" alt="all--plus">
+                    </div>
+                    <h2>all--plus, </h2>
+                </li>
+             <li title="all--quote">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#all--quote" class="svg-all--quote-dims" alt="all--quote">
+                    </div>
+                    <h2>all--quote, </h2>
+                </li>
+             <li title="all--tg">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#all--tg" class="svg-all--tg-dims" alt="all--tg">
+                    </div>
+                    <h2>all--tg, </h2>
+                </li>
+             <li title="bg--game">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#bg--game" class="svg-bg--game-dims" alt="bg--game">
+                    </div>
+                    <h2>bg--game, </h2>
+                </li>
+             <li title="bg--game_about">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#bg--game_about" class="svg-bg--game_about-dims" alt="bg--game_about">
+                    </div>
+                    <h2>bg--game_about, </h2>
+                </li>
+             <li title="bg--home_about">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#bg--home_about" class="svg-bg--home_about-dims" alt="bg--home_about">
+                    </div>
+                    <h2>bg--home_about, </h2>
+                </li>
+             <li title="bg--home_hero">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#bg--home_hero" class="svg-bg--home_hero-dims" alt="bg--home_hero">
+                    </div>
+                    <h2>bg--home_hero, </h2>
+                </li>
+             <li title="bg--home_made">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#bg--home_made" class="svg-bg--home_made-dims" alt="bg--home_made">
+                    </div>
+                    <h2>bg--home_made, </h2>
+                </li>
+             <li title="bg--home_team">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#bg--home_team" class="svg-bg--home_team-dims" alt="bg--home_team">
+                    </div>
+                    <h2>bg--home_team, </h2>
+                </li>
+             <li title="bg--our_works">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#bg--our_works" class="svg-bg--our_works-dims" alt="bg--our_works">
+                    </div>
+                    <h2>bg--our_works, </h2>
+                </li>
+             <li title="bg--process">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#bg--process" class="svg-bg--process-dims" alt="bg--process">
+                    </div>
+                    <h2>bg--process, </h2>
+                </li>
+             <li title="bg--projects">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#bg--projects" class="svg-bg--projects-dims" alt="bg--projects">
+                    </div>
+                    <h2>bg--projects, </h2>
+                </li>
+             <li title="bg--selection">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#bg--selection" class="svg-bg--selection-dims" alt="bg--selection">
+                    </div>
+                    <h2>bg--selection, </h2>
+                </li>
+             <li title="bg--service-page-hero">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#bg--service-page-hero" class="svg-bg--service-page-hero-dims" alt="bg--service-page-hero">
+                    </div>
+                    <h2>bg--service-page-hero, </h2>
+                </li>
+             <li title="bg--services_hero">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#bg--services_hero" class="svg-bg--services_hero-dims" alt="bg--services_hero">
+                    </div>
+                    <h2>bg--services_hero, </h2>
+                </li>
+             <li title="modal--back">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#modal--back" class="svg-modal--back-dims" alt="modal--back">
+                    </div>
+                    <h2>modal--back, </h2>
+                </li>
+             <li title="modal--cross">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#modal--cross" class="svg-modal--cross-dims" alt="modal--cross">
+                    </div>
+                    <h2>modal--cross, </h2>
+                </li>
+             <li title="modal--discord">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#modal--discord" class="svg-modal--discord-dims" alt="modal--discord">
+                    </div>
+                    <h2>modal--discord, </h2>
+                </li>
+             <li title="modal--help">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#modal--help" class="svg-modal--help-dims" alt="modal--help">
+                    </div>
+                    <h2>modal--help, </h2>
+                </li>
+             <li title="modal--tg">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#modal--tg" class="svg-modal--tg-dims" alt="modal--tg">
+                    </div>
+                    <h2>modal--tg, </h2>
+                </li>
+             <li title="projects--arrow">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#projects--arrow" class="svg-projects--arrow-dims" alt="projects--arrow">
+                    </div>
+                    <h2>projects--arrow, </h2>
+                </li>
+             <li title="services--line-1">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#services--line-1" class="svg-services--line-1-dims" alt="services--line-1">
+                    </div>
+                    <h2>services--line-1, </h2>
+                </li>
+             <li title="services--line-2">
+                    <div class="icon-box">
+                        <img src="svg/sprite.stack.svg#services--line-2" class="svg-services--line-2-dims" alt="services--line-2">
+                    </div>
+                    <h2>services--line-2, </h2>
+                </li>
+         </ul>
+
+<!--
+====================================================================================================
+-->
+
+        </section>
+        <footer>
+            <p>Generated at Tue, 13 Jan 2026 08:29:39 GMT by <a href="https://github.com/svg-sprite/svg-sprite" target="_blank" rel="noopener noreferrer">svg-sprite</a>.</p>
+        </footer>
+    </body>
+</html>

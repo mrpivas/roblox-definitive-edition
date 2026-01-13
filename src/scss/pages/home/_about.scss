@@ -1,0 +1,472 @@
+.about {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 80px 0;
+
+  // Фоновое изображение и эллипсы
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  &__bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/svgicons/bg/home_about.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  // Wrapper для flex-layout
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 120px;
+    position: relative;
+    z-index: 2;
+  }
+
+  // === ЛЕВАЯ ЧАСТЬ - ИЗОБРАЖЕНИЕ ===
+
+  &__image-wrapper {
+    position: relative;
+    flex-shrink: 0;
+    width: 480px;
+    height: 582px;
+
+    // Черные blur эллипсы для глубины
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      background: #000000;
+      filter: blur(280px);
+      -webkit-filter: blur(280px);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    &::before {
+      width: 2418px;
+      height: 505px;
+      top: -400px;
+      left: -549px;
+    }
+  }
+
+  // Карточка из жидкого стекла за изображением
+  &__image-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    z-index: 0;
+    padding: 30px;
+
+    // Прозрачный фон
+    background-color: rgba(255, 255, 255, 0.01);
+
+    // Тонкая граница с легким свечением
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 2px 2px 0px -2px rgba(255, 255, 255, 0.2),
+      inset 0 0 2px 0.5px rgba(255, 255, 255, 0.15);
+
+    // Внешняя граница
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      z-index: -2;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 4px 0.5px rgba(255, 255, 255, 0.08);
+      pointer-events: none;
+    }
+
+    // Liquid glass эффект - backdrop-filter + SVG фильтр
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      border-radius: 20px;
+
+      // Размываем и преломляем фон
+      backdrop-filter: blur(2px) saturate(150%);
+      -webkit-backdrop-filter: blur(2px) saturate(150%);
+
+      // Применяем SVG фильтр к размытому фону
+      filter: url(#liquid-glass-about);
+      -webkit-filter: url(#liquid-glass-about);
+
+      pointer-events: none;
+      overflow: hidden;
+      isolation: isolate;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  // === ПРАВАЯ ЧАСТЬ - КОНТЕНТ ===
+
+  &__content {
+    flex: 1;
+    max-width: 534px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  // === КОМАНДА (АВАТАРКИ) - ВВЕРХУ ===
+
+  &__team {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  &__avatars {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    // Порядок z-index через прямых потомков для большей специфичности
+    > *:nth-child(1) {
+      z-index: 5 !important;
+    }
+    > *:nth-child(2) {
+      z-index: 4 !important;
+    }
+    > *:nth-child(3) {
+      z-index: 3 !important;
+    }
+    > *:nth-child(4) {
+      z-index: 2 !important;
+    }
+    > *:nth-child(5) {
+      z-index: 1 !important;
+    }
+  }
+
+  &__avatar {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    min-height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    position: relative;
+
+    &:not(:first-child) {
+      margin-left: -16px;
+    }
+
+    // Последняя аватарка --more теперь как обычная фотка
+    &--more {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &__team-count {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.22;
+    color: var(--white-70);
+  }
+
+  &__title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.22;
+    text-transform: uppercase;
+    color: var(--white-100);
+    margin: 0;
+  }
+
+  &__text {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.22;
+    color: var(--white-70);
+    margin: 0;
+
+    &:first-of-type {
+      margin-bottom: 10px;
+    }
+  }
+
+  // === СТАТИСТИКА ===
+
+  &__stats {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 60px;
+    margin-top: 26px;
+  }
+
+  &__stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__stat-number {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 1.22;
+    text-align: center;
+    color: var(--white-100);
+    white-space: nowrap;
+  }
+
+  &__stat-label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.22;
+    text-align: center;
+    color: var(--white-70);
+    white-space: nowrap;
+  }
+
+  // === КНОПКА ===
+
+  &__button-wrapper {
+    filter: drop-shadow(0 0 30px rgba(113, 82, 239, 0.55));
+    transition: filter 0.3s ease;
+    margin-top: 20px;
+
+    &:hover {
+      filter: drop-shadow(0 0 40px rgba(113, 82, 239, 0.75));
+    }
+
+    &:active {
+      filter: drop-shadow(0 0 20px rgba(113, 82, 239, 0.35));
+    }
+  }
+
+  &__button {
+    width: 180px;
+    height: 50px;
+  }
+
+  // === ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ ===
+
+  // === АДАПТИВНОСТЬ ===
+
+  @include tablet {
+    padding: 60px 0;
+
+    &__wrapper {
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    &__image-wrapper {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      aspect-ratio: 480 / 582;
+
+      &::before {
+        width: 1200px;
+        height: 300px;
+        top: -200px;
+        left: -300px;
+        filter: blur(180px);
+        -webkit-filter: blur(180px);
+      }
+
+      &::after {
+        width: 1000px;
+        height: 300px;
+        top: 250px;
+        left: -200px;
+        filter: blur(180px);
+        -webkit-filter: blur(180px);
+      }
+    }
+
+    &__image-card {
+      padding: 20px;
+    }
+
+    &__content {
+      max-width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+
+    &__title {
+      font-size: 24px;
+    }
+
+    &__text {
+      font-size: 16px;
+    }
+
+    &__stats {
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    &__stat-number {
+      font-size: 20px;
+    }
+
+    &__stat-label {
+      font-size: 12px;
+    }
+  }
+
+  @include mobile {
+    padding: 40px 0;
+
+    &__wrapper {
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    &__content {
+      display: contents;
+    }
+
+    &__title {
+      order: 1;
+      font-size: 28px;
+      text-align: center;
+      max-width: 280px;
+      line-height: 1.22;
+      margin-bottom: 0;
+    }
+
+    &__image-wrapper {
+      order: 2;
+      width: 100%;
+      max-width: 335px;
+      height: auto;
+      aspect-ratio: 335 / 406;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+
+    &__image-card {
+      padding: 20px;
+      border-radius: 14px;
+
+      &::before {
+        border-radius: 14px;
+      }
+
+      &::after {
+        border-radius: 14px;
+      }
+    }
+
+    &__image {
+      border-radius: 14px;
+    }
+
+    &__team {
+      order: 3;
+      justify-content: flex-start;
+      margin-bottom: 0;
+      width: 100%;
+      max-width: 335px;
+    }
+
+    &__text {
+      font-size: 16px;
+      text-align: left;
+      max-width: 335px;
+      width: 100%;
+      margin: 0;
+
+      &:first-of-type {
+        order: 4;
+      }
+
+      &:last-of-type {
+        order: 5;
+      }
+    }
+
+    &__stats {
+      order: 6;
+      flex-direction: row;
+      gap: 40px;
+      justify-content: flex-start;
+      width: 100%;
+      max-width: 335px;
+      margin: 0;
+    }
+
+    &__stat-item {
+      width: auto;
+      align-items: flex-start;
+    }
+
+    &__stat-number {
+      font-size: 16px;
+      text-align: left;
+    }
+
+    &__stat-label {
+      font-size: 12px;
+      text-align: left;
+    }
+
+    &__button-wrapper {
+      order: 7;
+      margin: 0;
+      align-self: flex-start;
+      margin-left: calc((100% - 335px) / 2);
+    }
+
+    &__button {
+      width: 180px;
+    }
+  }
+}
