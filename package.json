@@ -49,6 +49,7 @@
 		"@fancyapps/ui": "^5.0.35",
 		"avif-webp-checker": "^1.0.0",
 		"intl-tel-input": "^25.12.5",
+		"odometer": "^0.4.8",
 		"swiper": "^11.0.6"
 	}
 }

@@ -345,11 +345,12 @@
     }
 
     &__slide {
-      width: 350px;
+      width: calc(100vw - 40px); // Занимаем 100% ширины viewport минус padding контейнера
 
       img {
-        width: 350px;
-        height: 187px;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 600 / 320; // Сохраняем пропорции
       }
     }
 
@@ -370,7 +371,7 @@
         transform: translateX(0);
       }
       100% {
-        transform: translateX(calc(-370px * 3));
+        transform: translateX(calc((100vw - 40px + 20px) * -3)); // ширина слайда + gap, умноженные на количество слайдов
       }
     }
 

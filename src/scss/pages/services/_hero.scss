@@ -213,7 +213,8 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 40px;
     z-index: 10;
-    overflow: hidden; // Обрезаем чтобы ничего не выходило
+    overflow: hidden;
+    isolation: isolate; // Создаем изолированный контекст для z-index
     backdrop-filter: blur(20px) saturate(150%);
     -webkit-backdrop-filter: blur(20px) saturate(150%);
 
@@ -241,27 +242,35 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 0;
+      min-height: 100%;
+      z-index: -1;
       pointer-events: none;
-      overflow: hidden;
 
       &-image {
         position: absolute;
         top: 0;
         left: 0;
+        right: 0;
+        bottom: 0;
         width: 100%;
         height: 100%;
         background-image: url("../img/svgicons/bg/process.svg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        opacity: 1;
       }
     }
 
     // Контент поверх фона и сетки
     > * {
       position: relative;
-      z-index: 2;
+      z-index: 1;
+    }
+    
+    // Фон остается под контентом
+    &__bg {
+      z-index: -1 !important;
     }
   }
 

@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   padding: 150px 0 120px;
-  overflow: hidden;
+  overflow-x: hidden; // Только горизонтальный overflow скрыт
 
   // Фоновое изображение
   &__bg {
@@ -70,6 +70,8 @@
 
     &--mobile {
       display: none;
+      overflow: visible; // Разрешаем overflow для dropdown
+      z-index: 200; // Высокий z-index для мобильной версии
     }
 
     &--desktop {
@@ -155,7 +157,7 @@
     width: 100%;
     max-width: 335px;
     margin: 0 auto;
-    z-index: 100;
+    z-index: 200; // Увеличиваем, чтобы быть поверх всех элементов
     display: none; // Скрыт по умолчанию на desktop
 
     @include mobile {
@@ -242,45 +244,27 @@
     top: calc(100% + 8px);
     left: 0;
     right: 0;
-    background: transparent;
     border-radius: 20px;
-    overflow: visible;
+    overflow: hidden;
     max-height: 0;
     opacity: 0;
     visibility: hidden;
     transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 101;
+    z-index: 201; // Выше чем dropdown
+    isolation: isolate;
+    padding: 20px; // Согласно дизайну Figma
 
-    // Основной фон
-    background-color: rgba(15, 15, 15, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-
-    // Жидкое стекло эффект
-    &::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      z-index: 0;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      pointer-events: none;
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      z-index: 0;
-      inset: 0;
-      border-radius: 20px;
-      backdrop-filter: blur(10px) saturate(150%);
-      -webkit-backdrop-filter: blur(10px) saturate(150%);
-      pointer-events: none;
-    }
+    // Жидкое стекло: темный фон с backdrop-filter
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(2px) saturate(150%);
+    -webkit-backdrop-filter: blur(2px) saturate(150%);
 
     .projects__dropdown.active & {
       max-height: 300px;
       opacity: 1;
       visibility: visible;
+      overflow: visible;
     }
   }
 
@@ -288,18 +272,19 @@
     position: relative;
     display: block;
     width: 100%;
-    padding: 16px 32px;
+    padding: 8px 0;
     background: transparent;
     border: none;
     cursor: pointer;
     font-family: "Montserrat", sans-serif;
-    font-weight: 700;
+    font-weight: 400; // Неактивные элементы - обычный шрифт
     font-size: 14px;
     line-height: 1.22;
     color: var(--white-100);
     text-align: left;
     transition: all 0.3s ease;
-    z-index: 10;
+    z-index: 1;
+    opacity: 0.6; // Неактивные элементы - 60% прозрачности
 
     // Убираем выделение при клике
     -webkit-tap-highlight-color: transparent;
@@ -311,15 +296,16 @@
     outline: none;
 
     &:hover {
-      background: rgba(101, 64, 251, 0.2);
+      opacity: 0.8;
     }
 
     &--active {
-      background: rgba(101, 64, 251, 0.3);
+      font-weight: 700; // Активный элемент - жирный шрифт
+      opacity: 1; // Активный элемент - полная непрозрачность
     }
 
     &:not(:last-child) {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 16px; // Gap между элементами из Figma
     }
   }
 
@@ -332,7 +318,7 @@
     margin-bottom: 40px;
     justify-content: center;
     position: relative;
-    z-index: 1;
+    z-index: 0; // Понижаем z-index, чтобы dropdown был поверх
 
     @media (max-width: 1200px) {
       grid-template-columns: repeat(3, 1fr);
@@ -439,6 +425,7 @@
       margin-left: 0;
       margin-right: 0;
       padding: 0 20px;
+      overflow: visible !important; // Разрешаем dropdown показываться полностью
 
       &--desktop {
         display: none !important;
@@ -446,6 +433,8 @@
 
       &--mobile {
         display: block !important;
+        overflow: visible !important;
+        z-index: 200 !important; // Высокий z-index для отображения поверх карточек
       }
     }
 

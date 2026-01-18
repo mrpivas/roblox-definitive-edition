@@ -216,6 +216,8 @@
 
     &__grid {
       gap: 20px;
+      padding: 0 20px; // Padding для корректного отображения слайдера
+      margin: 0 -20px; // Компенсируем padding контейнера
     }
 
     &__navigation--desktop {
@@ -499,9 +501,8 @@
 
   // Адаптация для мобильных
   @include mobile {
-    width: 100%;
-    max-width: 335px;
-    margin: 0 auto;
+    min-width: calc(100vw - 80px);
+    margin: 0;
     padding: 20px;
 
     &__image {

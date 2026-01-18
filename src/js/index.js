@@ -68,3 +68,6 @@ initServiceGamesSlider();
 
 import { initSelectionParams } from './pages/selection-params.js';
 initSelectionParams();
+
+import { initCounterAnimation } from './modules/counter-animation.js';
+initCounterAnimation();
