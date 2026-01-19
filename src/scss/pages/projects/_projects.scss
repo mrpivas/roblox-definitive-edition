@@ -2,18 +2,34 @@
   position: relative;
   width: 100%;
   padding: 150px 0 120px;
-  overflow-x: hidden; // Только горизонтальный overflow скрыт
+  overflow: visible; // Разрешаем overflow, чтобы эллипс не обрезался
+
+  // Фиолетовый эллипс из Figma (дополнительно к фону)
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -100px; // Смещаем ниже, чтобы было видно больше свечения
+    left: -200px; // Смещаем влево, чтобы не обрезалось
+    width: 700px; // Увеличиваем размер для лучшего эффекта
+    height: 700px;
+    background-image: url("../img/svgicons/bg/project_purple.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    pointer-events: none;
+  }
 
   // Фоновое изображение
   &__bg {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 50%; // Центрируем по горизонтали
+    transform: translateX(-50%); 
+    width: 100vw; // Растягиваем на весь экран
     height: 100%;
-    z-index: -1;
+    z-index: -2; // Под эллипсом
     pointer-events: none;
-    overflow: hidden;
   }
 
   &__bg-image {
@@ -24,7 +40,7 @@
     height: 100%;
     background-image: url("../img/svgicons/bg/projects.svg");
     background-size: cover;
-    background-position: center;
+    background-position: top center; // Фиксируем верх, чтобы свечение не уходило
     background-repeat: no-repeat;
   }
 

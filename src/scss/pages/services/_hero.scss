@@ -22,7 +22,7 @@
       height: 100%;
       background-image: url("../img/svgicons/bg/services_hero.svg");
       background-size: cover;
-      background-position: center;
+      background-position: top center; // Фиксируем верх, чтобы квадратики всегда были видны
       background-repeat: no-repeat;
     }
   }
@@ -213,65 +213,58 @@
     border-radius: 40px;
     z-index: 10;
     overflow: hidden;
-    isolation: isolate;
     backdrop-filter: blur(20px) saturate(150%);
     -webkit-backdrop-filter: blur(20px) saturate(150%);
+    background-color: rgba(13, 13, 17, 0.3);
 
-    // Сетка поверх SVG фона через псевдоэлемент
+    // SVG фон через ::before (самый нижний слой)
     &::before {
       content: "";
       position: absolute;
       inset: 0;
-      z-index: 0;
+      z-index: 1;
+      border-radius: 40px;
+      background-image: url("../img/svgicons/bg/process.svg");
+      background-size: cover;
+      background-position: top center;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    // Сетка поверх SVG через ::after
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
       border-radius: 40px;
       background-image: repeating-linear-gradient(
           0deg,
           transparent,
           transparent 39px,
-          rgba(255, 255, 255, 0.03) 39px,
-          rgba(255, 255, 255, 0.03) 40px
+          rgba(255, 255, 255, 0.005) 39px,
+          rgba(255, 255, 255, 0.005) 40px
         ),
         repeating-linear-gradient(
           90deg,
           transparent,
           transparent 39px,
-          rgba(255, 255, 255, 0.03) 39px,
-          rgba(255, 255, 255, 0.03) 40px
+          rgba(255, 255, 255, 0.005) 39px,
+          rgba(255, 255, 255, 0.005) 40px
         );
-      background-color: rgba(13, 13, 17, 0.3);
       pointer-events: none;
     }
 
-    // SVG фон под сеткой
+    // Скрываем HTML элемент &__bg (используем псевдоэлементы)
     &__bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2; // Под сеткой (::before имеет z-index: 0)
-      pointer-events: none;
-
-      &-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("../img/svgicons/bg/process.svg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        opacity: 1;
-      }
+      display: none;
     }
 
-    // Контент поверх фона и сетки
-    > *:not(&__bg) {
+    // Контент поверх всего
+    > * {
       position: relative;
-      z-index: 2; // Над сеткой и фоном
+      z-index: 3;
     }
   }
 

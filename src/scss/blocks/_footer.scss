@@ -6,6 +6,7 @@
   border-radius: 40px 40px 0 0;
   border-top: 1px solid transparent;
   overflow: hidden;
+  z-index: 10; // Поверх всех фоновых элементов, включая эллипс
 
   // Радиальный градиент по верхней границе
   &::before {

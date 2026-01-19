@@ -38,6 +38,36 @@
     background: #131922;
     border-radius: 20px;
     overflow: hidden;
+
+    // Эллипс-свечение в левом верхнем углу
+    &::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(113, 82, 239, 0.4) 0%, transparent 70%);
+      filter: blur(40px);
+      -webkit-filter: blur(40px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    // Эллипс-свечение в правом нижнем углу
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(113, 82, 239, 0.4) 0%, transparent 70%);
+      filter: blur(40px);
+      -webkit-filter: blur(40px);
+      z-index: 0;
+      pointer-events: none;
+    }
   }
 
   // Фоновое изображение (скрыто)
@@ -53,13 +83,13 @@
   // Контент карточки
   &__photo-content {
     position: relative;
-    z-index: 3;
+    z-index: 2;
     padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    background: #131922;
+    background: transparent;
     border-radius: 20px;
   }
 
