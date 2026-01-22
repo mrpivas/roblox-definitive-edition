@@ -14,6 +14,7 @@
     z-index: -1;
     pointer-events: none;
     overflow: hidden;
+    background: #000000;
   }
 
   &__bg-image {
@@ -26,6 +27,21 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 448px;
+      height: 448px;
+      border-radius: 448px;
+      background: var(--pink, rgba(210, 64, 251, 0.6));
+      mix-blend-mode: color-dodge;
+      filter: blur(130px);
+      -webkit-filter: blur(130px);
+      pointer-events: none;
+    }
   }
 
   // Wrapper для flex-layout

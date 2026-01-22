@@ -47,6 +47,19 @@
     }
   }
 
+  // Чёрная заливка между dawn и тёмным блоком (stats) — как в дизайне
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 707px; // 318 + 389 — сразу под dawn
+    background: #000;
+    z-index: 0;
+    pointer-events: none;
+  }
+
   &__content {
     position: relative;
     z-index: 2;
@@ -152,15 +165,29 @@
     margin-right: calc(50% - 50vw + 120px);
     width: calc(100vw - 240px); // Учитываем padding контейнера (120px * 2)
     max-width: 1202px;
-    background: linear-gradient(
-      135deg,
-      rgba(17, 18, 23, 0.6) 0%,
-      rgba(17, 18, 23, 0.4) 100%
-    ),
-    url('../img/svgicons/bg/a_lot_play.svg');
-    background-size: auto, cover;
-    background-position: center, center;
-    background-repeat: no-repeat, no-repeat;
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 39px,
+        rgba(255, 255, 255, 0.12) 39px,
+        rgba(255, 255, 255, 0.12) 40px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 39px,
+        rgba(255, 255, 255, 0.12) 39px,
+        rgba(255, 255, 255, 0.12) 40px
+      ),
+      linear-gradient(
+        135deg,
+        rgba(17, 18, 23, 0.6) 0%,
+        rgba(17, 18, 23, 0.4) 100%
+      ),
+      url('../img/svgicons/bg/a_lot_play.svg');
+    background-size: auto, auto, auto, cover;
+    background-position: center, center, center, center;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -342,6 +369,10 @@
       height: 300px;
     }
 
+    &::after {
+      top: 500px; // 200 + 300 — под dawn
+    }
+
     &__content {
       max-width: 100%;
       padding: 0 20px;
@@ -372,6 +403,10 @@
     &__dawn {
       top: 370px;
       height: 389px;
+    }
+
+    &::after {
+      top: 759px; // 370 + 389 — под dawn
     }
 
     &__content {
